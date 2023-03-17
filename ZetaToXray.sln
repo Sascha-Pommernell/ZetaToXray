@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.5.33424.131
+VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZetaToXray", "ZetaToXray\ZetaToXray.csproj", "{78B352F8-C5A1-4A20-A6E1-30670CE97629}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZetaToXray", "ZetaToXray.csproj", "{6B168301-B98A-4957-980A-EF48DA22FAC6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{78B352F8-C5A1-4A20-A6E1-30670CE97629}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{78B352F8-C5A1-4A20-A6E1-30670CE97629}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{78B352F8-C5A1-4A20-A6E1-30670CE97629}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{78B352F8-C5A1-4A20-A6E1-30670CE97629}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B168301-B98A-4957-980A-EF48DA22FAC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B168301-B98A-4957-980A-EF48DA22FAC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B168301-B98A-4957-980A-EF48DA22FAC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B168301-B98A-4957-980A-EF48DA22FAC6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {35B39A23-4CDA-4645-9A4F-7B291F7B9553}
+		SolutionGuid = {7DA6036B-C26A-45BC-A036-61093F75AF95}
 	EndGlobalSection
 EndGlobal

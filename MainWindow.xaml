@@ -1,0 +1,279 @@
+﻿<MW:MetroWindow        
+        x:Class="ZetaToXray.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ZetaToXray"
+        mc:Ignorable="d"
+        xmlns:MW="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:MD="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Height="650"
+        MinHeight="650"
+        Width="1200"
+        MinWidth="1200"
+        SnapsToDevicePixels="True"
+        UseLayoutRounding="True"
+        WindowTitleBrush="{StaticResource AppBrushColorCyan}"
+        TitleBarHeight="6"
+        WindowStartupLocation="CenterScreen"
+        ShowCloseButton="False"
+        ShowMaxRestoreButton="False"
+        ShowMinButton="False"
+        ResizeMode="CanResizeWithGrip"
+        MouseLeftButtonDown="MetroWindow_MouseLeftButtonDown"
+        Loaded="MetroWindow_Loaded">
+
+    <!--Windows Resources-->
+    <Window.Resources>
+        <Storyboard x:Key="AnimateMenuItems">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="UmstellungTranslateTransform" Storyboard.TargetProperty="X">
+                <EasingDoubleKeyFrame KeyTime="0" Value="-400"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="EinstellungTranslateTransform" Storyboard.TargetProperty="X">
+                <EasingDoubleKeyFrame KeyTime="0" Value="-400"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>            
+
+            <ColorAnimationUsingKeyFrames Storyboard.TargetName="BorderMenuFlyout" Storyboard.TargetProperty="Background.(SolidColorBrush.Color)">
+                <EasingColorKeyFrame KeyTime="0" Value="{StaticResource AppCyanColor}"/>
+                <EasingColorKeyFrame KeyTime="0:0:0.4" Value="{StaticResource AppBlueColor}"/>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+
+    <!--Flyouts-->
+    <MW:MetroWindow.Flyouts>
+        <MW:FlyoutsControl Background="{StaticResource AppBrushColorBlue}">
+            <MW:Flyout Name="MenuFlyout" CloseButtonVisibility="Collapsed" Position="Left" Margin="0 60 0 0">
+                <Border Name="BorderMenuFlyout"
+                        Margin="0 -36 0 0"
+                        HorizontalAlignment="Left"
+                        MinWidth="180"
+                        BorderThickness="0 0 1 0"
+                        BorderBrush="{StaticResource AppBrushColorCyan}"
+                        Background="{StaticResource AppBrushColorBlue}">
+                    <Grid>
+                        <Border Name="BorderCurser"
+                                    Panel.ZIndex="1"
+                                    Width="6" Height="44"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Margin="0 4 0 0"
+                                    Background="{StaticResource AppBrushColorCyan}">
+                        </Border>
+
+                        <ListView Name="MainMenuListView"
+                                      ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                      ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                      SelectionChanged="MainMenuListView_SelectionChanged">
+
+                            <ListViewItem Name="ListViewItemUmstellung">
+                                <ListViewItem.RenderTransform>
+                                    <TranslateTransform x:Name="UmstellungTranslateTransform"/>
+                                </ListViewItem.RenderTransform>
+
+                                <StackPanel Orientation="Horizontal" Margin="8 0 0 0">
+                                    <MD:PackIcon 
+                                            Kind="InfoCircleOutline"
+                                            Foreground="White"
+                                            Width="30" Height="30"
+                                            VerticalAlignment="Center">
+                                    </MD:PackIcon>
+
+                                    <Label 
+                                            Content="Umstellung"
+                                            Foreground="White"
+                                            Height="30"
+                                            VerticalAlignment="Bottom"
+                                            FontWeight="Bold">
+                                    </Label>
+                                </StackPanel>
+                            </ListViewItem>
+
+                            <ListViewItem Name="ListViewItemEinstellung">
+                                <ListViewItem.RenderTransform>
+                                    <TranslateTransform x:Name="EinstellungTranslateTransform"/>
+                                </ListViewItem.RenderTransform>
+
+                                <StackPanel Orientation="Horizontal" Margin="8 0 0 0">
+                                    <MD:PackIcon 
+                                            Kind="AccountEdit"
+                                            Foreground="White"
+                                            Width="30" Height="30"
+                                            VerticalAlignment="Center">
+                                    </MD:PackIcon>
+
+                                    <Label 
+                                            Content="Einstellungen"
+                                            Foreground="White"
+                                            Height="30"
+                                            VerticalAlignment="Bottom"
+                                            FontWeight="Bold">
+                                    </Label>
+                                </StackPanel>
+                            </ListViewItem>
+
+                        </ListView>
+                    </Grid>
+                </Border>
+            </MW:Flyout>
+
+            <MW:Flyout Name="InfoFlyout"></MW:Flyout>
+        </MW:FlyoutsControl>
+    </MW:MetroWindow.Flyouts>
+
+    <!--Windows Triggers-->
+    <Window.Triggers>
+        <EventTrigger SourceName="TglBtnMenuOpenClose" RoutedEvent="ToggleButton.Checked">
+            <EventTrigger.Actions>
+                <BeginStoryboard Storyboard="{StaticResource AnimateMenuItems}">
+                </BeginStoryboard>
+            </EventTrigger.Actions>
+        </EventTrigger>
+    </Window.Triggers>
+
+    <!--Main Grid-->
+    <Grid Name="MainGrid">
+        <Grid Background="{StaticResource AppBrushColorBlue}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <!--Title Bar-->
+            <Grid Grid.Row="0">
+
+                <!--Menu Button-->
+                <Grid HorizontalAlignment="Left" Panel.ZIndex="1" Width="50">
+                    <StackPanel Orientation="Horizontal">
+                        <ToggleButton Name="TglBtnMenuOpenClose" Cursor="Hand" Click="TglBtnMenuOpenClose_Click">
+                            <ToggleButton.Style>
+                                <Style TargetType="ToggleButton">
+                                    <Setter Property="Foreground" Value="{StaticResource AppBrushColorCyan}"/>
+                                    <Setter Property="Height" Value="36"/>
+                                    <Setter Property="Width" Value="36"/>
+                                    <Setter Property="Margin" Value="4 0 0 0"/>
+                                    <Setter Property="Cursor" Value="Hand"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ToggleButton">
+                                                <Border BorderThickness="1" 
+                                                        BorderBrush="{StaticResource AppBrushColorCyan}" 
+                                                        Background="{StaticResource AppBrushColorBlue}"
+                                                        CornerRadius="6">
+                                                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                                        <MD:PackIcon Name="PIOpen" Kind="Menu" Width="34" Height="34"
+                                                                 HorizontalAlignment="Stretch"
+                                                                 VerticalAlignment="Stretch">
+                                                        </MD:PackIcon>
+
+                                                        <MD:PackIcon Name="PIClose" Kind="Close"
+                                                                 Visibility="Collapsed"
+                                                                 Width="34"
+                                                                 Height="34"
+                                                                 HorizontalAlignment="Stretch"
+                                                                 VerticalAlignment="Stretch">
+                                                        </MD:PackIcon>
+                                                    </Grid>
+                                                </Border>
+
+                                                <ControlTemplate.Triggers>
+                                                    <Trigger Property="IsChecked" Value="True">
+                                                        <Setter TargetName="PIClose" Property="Visibility" Value="Visible"/>
+                                                        <Setter TargetName="PIOpen" Property="Visibility" Value="Collapsed"/>
+                                                    </Trigger>
+
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ToggleButton.Style>
+                        </ToggleButton>
+                        <StackPanel Orientation="Horizontal">
+
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+
+                <!--App Name-->
+                <Grid HorizontalAlignment="Stretch" Panel.ZIndex="0" Cursor="Hand" PreviewMouseMove="Grid_PreviewMouseMove">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="75*"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="ZetaToXray" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontFamily="Segoe Print" FontWeight="ExtraBold"></TextBlock>
+                </Grid>
+
+                <!--Min-Max-Close-Button-->
+                <Grid HorizontalAlignment="Right" Panel.ZIndex="1">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Cursor="Hand">
+                        <Button Name="BtnWindowsMinimizer" Style="{StaticResource BtnMinCloseStyle}" Foreground="{StaticResource AppBrushColorCyan}" Click="BtnWindowsMinimizer_Click">
+                            <MD:PackIcon Kind="WindowMinimize" Width="24" Height="24"/>
+                        </Button>
+
+                        <ToggleButton Name="TglBtnWindowsNormalMax" Click="TglBtnWindowsNormalMax_Click">
+                            <ToggleButton.Style>
+                                <Style TargetType="ToggleButton">
+                                    <Setter Property="Foreground" Value="{StaticResource AppBrushColorCyan}"/>
+                                    <Setter Property="Height" Value="24"/>
+                                    <Setter Property="Width" Value="24"/>
+                                    <Setter Property="Margin" Value="8 0"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ToggleButton">
+                                                <Border Name="TBorder"
+                                                        BorderThickness="0" 
+                                                        Background="{StaticResource AppBrushColorBlue}"
+                                                        CornerRadius="15">
+                                                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                                        <MD:PackIcon Name="PIMax" Kind="WindowMaximize" Width="24" Height="24"
+                                                                 HorizontalAlignment="Stretch"
+                                                                 VerticalAlignment="Stretch">
+                                                        </MD:PackIcon>
+
+                                                        <MD:PackIcon Name="PIRes" Kind="WindowRestore"
+                                                                 Visibility="Collapsed"
+                                                                 Width="24"
+                                                                 Height="24"
+                                                                 HorizontalAlignment="Stretch"
+                                                                 VerticalAlignment="Stretch">
+                                                        </MD:PackIcon>
+                                                    </Grid>
+                                                </Border>
+
+                                                <ControlTemplate.Triggers>
+                                                    <Trigger Property="IsChecked" Value="True">
+                                                        <Setter TargetName="PIMax" Property="Visibility" Value="Collapsed"/>
+                                                        <Setter TargetName="PIRes" Property="Visibility" Value="Visible"/>
+                                                    </Trigger>
+
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter TargetName="TBorder" Property="Background" Value="White"/>
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ToggleButton.Style>
+                        </ToggleButton>
+
+                        <Button Name="BtnWindowClose" Style="{StaticResource BtnMinCloseStyle}" Foreground="DarkRed" Click="BtnWindowClose_Click">
+                            <MD:PackIcon Kind="WindowClose" Width="24" Height="24"/>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+
+            <!--UCs Place Holder Grid-->
+            <Border Grid.Row="1" BorderThickness="0 1 0 0" BorderBrush="White">
+                <Grid Name="UCsPlaceHoldergrid"></Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</MW:MetroWindow>
