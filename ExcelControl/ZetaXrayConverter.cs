@@ -57,7 +57,7 @@ namespace ZetaToXray.ExcelControl
                             outputExcelTestCase[cellLine, 7] = testCase[cellLine,11];
                             break;
                         case 13:
-                            testCase = testCase[cellLine, 13].ToCharArray();
+                            //testCase = testCase[cellLine, 13].ToCharArray();
                             outputExcelTestCase[cellLine, 5] = testCase[cellLine, 13];
                             outputExcelTestCase[cellLine, 6] = testCase[cellLine, 13];
                             break;
