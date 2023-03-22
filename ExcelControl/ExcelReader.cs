@@ -10,31 +10,14 @@ namespace ZetaToXray.ExcelControl
         private static int lineStart = 2;
         private static int columnsStart = 1;
         private static int lineEnd = 10000; 
-        private static int columnsEnd = 21;
-
-        
+        private static int columnsEnd = 21;        
         private string pathExcelRead;
         private string[,]? excelRead;
 
-        public string PathExcelRead 
-        { 
-            get => pathExcelRead;
-            set
-            {
-                try
-                {
-                    if (value != null)
-                    {
-                        pathExcelRead = value;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Es wurde keine Dateipfad und keine Datei für den Import angegeben!\n" + ex.Message);
-                }
-                
-            }            
-        }
+        public ExcelReader(string _pathExcelRead)
+        {
+            pathExcelRead = _pathExcelRead;                        
+        }        
 
         public string[,] CreateExcelArry()
         {
