@@ -2,7 +2,7 @@
 using Range = Microsoft.Office.Interop.Excel.Range;
 using ZetaToXray.ExcelControl;
 
-namespace ZetaToXray.ExcelControl
+namespace ZetaToXray.Converter
 {
     public class ZetaXrayConverter
     {
