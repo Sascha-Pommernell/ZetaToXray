@@ -1,7 +1,7 @@
-﻿<Application x:Class="ZetaToXray.App"
+﻿<Application x:Class="ZetaToXrayFrontend.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:ZetaToXray"
+             xmlns:local="clr-namespace:ZetaToXrayFrontend"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
@@ -91,4 +91,4 @@
             </Style>
         </ResourceDictionary>
     </Application.Resources>
-</Application> 
+</Application>

@@ -1,8 +1,8 @@
 ﻿using Excel = Microsoft.Office.Interop.Excel;
 using Range = Microsoft.Office.Interop.Excel.Range;
-using ZetaToXray.ExcelControl;
+using ZetaToXrayFrontend.ExcelControl;
 
-namespace ZetaToXray.Converter
+namespace ZetaToXrayFrontend.Converter
 {
     public class ZetaXrayConverter
     {

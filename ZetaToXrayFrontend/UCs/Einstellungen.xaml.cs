@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ZetaToXray.UCs
+namespace ZetaToXrayFrontend.UCs
 {
     /// <summary>
-    /// Interaktionslogik für Umstellung.xaml
+    /// Interaktionslogik für Einstellungen.xaml
     /// </summary>
-    public partial class Umstellung : UserControl
+    public partial class Einstellungen : UserControl
     {
-        public Umstellung()
+        public Einstellungen()
         {
             InitializeComponent();
         }

@@ -1,28 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MahApps.Metro.Controls.Dialogs;
+using MahApps.Metro.Controls;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using MahApps.Metro.Controls;
-using MahApps.Metro.Controls.Dialogs;
-using ZetaToXray.UCs;
+using ZetaToXrayFrontend.UCs;
 
-namespace ZetaToXray
+namespace ZetaToXrayFrontend
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : MetroWindow        
+    public partial class MainWindow : MetroWindow
     {
         private Einstellungen? _Einstellungen;
         private Umstellung? _Umstellung;
@@ -37,7 +27,7 @@ namespace ZetaToXray
             Init();
         }
 
-        private void Init() 
+        private void Init()
         {
             _Einstellungen = new Einstellungen();
             _Umstellung = new Umstellung();
@@ -67,7 +57,7 @@ namespace ZetaToXray
                     AnimateHide = true
                 };
 
-                var erg = await this.ShowMessageAsync("ACHTUNG!", "Wollen Sie ZetaToXray schließen?", MessageDialogStyle.AffirmativeAndNegative, dialogSetting);
+                var erg = await this.ShowMessageAsync("ACHTUNG!", "Wollen Sie ZetaToXrayFrontend schließen?", MessageDialogStyle.AffirmativeAndNegative, dialogSetting);
 
                 if (erg == MessageDialogResult.Affirmative)
                 {
@@ -155,7 +145,7 @@ namespace ZetaToXray
                 case 1:
                     UCsPlaceHoldergrid.Children.Clear();
                     UCsPlaceHoldergrid.Children.Add(_Umstellung);
-                    break;               
+                    break;
                 default:
                     break;
             }

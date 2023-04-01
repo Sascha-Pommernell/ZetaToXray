@@ -3,7 +3,7 @@ using System.Windows;
 using Excel = Microsoft.Office.Interop.Excel;
 using Range = Microsoft.Office.Interop.Excel.Range;
 
-namespace ZetaToXray.ExcelControl
+namespace ZetaToXrayFrontend.ExcelControl
 {
     public class ExcelReader
     {
