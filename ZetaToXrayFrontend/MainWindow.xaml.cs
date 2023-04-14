@@ -57,7 +57,7 @@ namespace ZetaToXrayFrontend
                     AnimateHide = true
                 };
 
-                var erg = await this.ShowMessageAsync("ACHTUNG!", "Wollen Sie ZetaToXrayFrontend schließen?", MessageDialogStyle.AffirmativeAndNegative, dialogSetting);
+                var erg = await this.ShowMessageAsync("ACHTUNG!", "Wollen Sie ZetaToXray schließen?", MessageDialogStyle.AffirmativeAndNegative, dialogSetting);
 
                 if (erg == MessageDialogResult.Affirmative)
                 {

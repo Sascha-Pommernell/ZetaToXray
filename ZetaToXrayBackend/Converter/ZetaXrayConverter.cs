@@ -5,32 +5,43 @@ namespace ZetaToXrayFrontend.Converter
 {
     public class ZetaXrayConverter
     {
-        private int lineStart = 2;
-        private int columnsStart = 1;
-        private int lineEnd = 10000;
-        private int columnsEnd = 21;
-        private string[,] outputXrayTests;
-        private string[,] outputXrayPreCondition;
-        private string[,] excelinput;
+        private static int lineStart = 2;
+        private static int columnsStart = 1;
+        private static int lineEnd = 10000;
+        private static int columnsEnd = 21;
+        private string[,] outputXrayTests = new string[lineEnd - lineStart, columnsEnd - columnsStart];
+        private string[,] outputXrayPreCondition = new string[lineEnd - lineStart, columnsEnd - columnsStart];
+        private string[,] excelinput = new string[lineEnd - lineStart, columnsEnd - columnsStart];
         private char[]? teststep;
         private string? tmpTeststep;
         private TestCaseZeta testCaseZeta = new TestCaseZeta();
         private TestStepXray testStepXray = new TestStepXray();
+        private TestCaseXray testCaseXray = new TestCaseXray();
+        private TestStepXray tmptestStepXray = new TestStepXray();
         private List<TestCaseZeta> testCaseZetaList = new List<TestCaseZeta>();
         private List<TestStepXray> testStepXrayList = new List<TestStepXray>();
+        private List<TestCaseXray> testCaseXrayList = new List<TestCaseXray>();
 
         public ZetaXrayConverter(string[,] _excelinput)
         {
             if (_excelinput != null)
             {
                 excelinput = _excelinput;
+                
                 CreateTestCaseZetaList(excelinput);
+                
                 if (testCaseZetaList != null)
                 {
                     CreateTestStepXrayList(testCaseZetaList);
+                    
                     if (testStepXrayList != null)
                     {
-                        ConverterOutput(testCaseZetaList, testStepXrayList);
+                        CreateTestCaseXrayList(testCaseZetaList, testStepXrayList);
+
+                        if (testCaseXrayList != null)
+                        {
+                            OutputXrayTestCase(testCaseXrayList);
+                        }
                     }
                 }
             }
@@ -141,7 +152,7 @@ namespace ZetaToXrayFrontend.Converter
                             {
                                 tmpTeststep = tmpTeststep + ".";
                                 testStepXray.TCID = testCaseZeta.TestFallID;
-                                testStepXray.Aktion = tmpTeststep.ToString();
+                                testStepXray.TestStepAction = tmpTeststep.ToString();
                                 testStepXrayList.Add(testStepXray);
                                 tmpTeststep = null;
                             } 
@@ -153,8 +164,8 @@ namespace ZetaToXrayFrontend.Converter
                             {
                                 tmpTeststep = tmpTeststep + ".";
                                 testStepXray.TCID = testCaseZeta.TestFallID;
-                                testStepXray.Aktion = tmpTeststep.ToString();
-                                testStepXray.Ergebnis = testCaseZeta.ErwartetesErgebnis;
+                                testStepXray.TestStepAction = tmpTeststep.ToString();
+                                testStepXray.TestStepResult = testCaseZeta.ErwartetesErgebnis;
                                 testStepXrayList.Add(testStepXray);
                                 tmpTeststep = null;
                             }
@@ -170,13 +181,60 @@ namespace ZetaToXrayFrontend.Converter
             }
         }
         
-        private string[,] ConverterOutput(List<TestCaseZeta> testCaseZetasList, List<TestStepXray> testStepXrayList)
+        private List<TestCaseXray> CreateTestCaseXrayList(List<TestCaseZeta> testCaseZetasList, List<TestStepXray> testStepXrayList)
         {
             if (testCaseZetasList != null && testStepXrayList != null)
             {
+                foreach(TestCaseZeta testCaseZeta in testCaseZetasList)
+                {
+                    testCaseXray.TCID = testCaseZeta.TestFallID;
+                    testCaseXray.TestSummary = testCaseZeta.TestFallTitel;
+                    testCaseXray.TestPriority = testCaseZeta.Testpriorität;
+                    testCaseXray.Discription = testCaseZeta.TestFallBeschreibung;
+                    testCaseXray.Components = testCaseZeta.Hierachie;
+                    testCaseXray.MaxExecutions = "1";
+                    
+                    foreach(TestStepXray testStepXray in testStepXrayList)
+                    {
+                        if(testStepXray.TCID == testStepXray.TCID)
+                        {                            
+                            if (testStepXray.TestStepResult != null)
+                            {
+                                tmptestStepXray.TCID = testStepXray.TCID;
+                                tmptestStepXray.TestStepAction = testStepXray.TestStepAction;
+                                tmptestStepXray.TestStepData = "";
+                                tmptestStepXray.TestStepResult = testStepXray.TestStepResult;
+                                if(testCaseXray.TestCaseTestStepList != null)
+                                {
+                                    testCaseXray.TestCaseTestStepList.Add(tmptestStepXray);
+                                }
+                            }
+                            else
+                            {
+                                tmptestStepXray.TCID = testStepXray.TCID;
+                                tmptestStepXray.TestStepAction = testStepXray.TestStepAction;
+                                tmptestStepXray.TestStepData = "";
+                                if (testCaseXray.TestCaseTestStepList != null)
+                                {
+                                    testCaseXray.TestCaseTestStepList.Add(tmptestStepXray);
+                                }
+                            }
+                        }
+                    }
 
+                    testCaseXrayList.Add(testCaseXray);
+                }
             }
             
+            return testCaseXrayList;
+        }
+
+        public string[,] OutputXrayTestCase(List<TestCaseXray> testCaseXrayList)
+        {
+            if (testCaseXrayList != null)
+            {
+                
+            }
             return outputXrayTests;
         }
 
