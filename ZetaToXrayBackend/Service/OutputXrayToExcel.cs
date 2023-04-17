@@ -34,7 +34,7 @@ namespace ZetaToXrayBackend.Service
                 foreach (TestCaseXray testCaseXray in testCaseXrayList)
                 {
                     for (int line = lineStart; line < lineEnd - lineStart; line++)
-                    {                          
+                    {
                         outputXrayTests[line, 1] = testCaseXray.TCID.ToString();
                         outputXrayTests[line, 2] = testCaseXray.TestSummary;
                         outputXrayTests[line, 3] = testCaseXray.TestPriority;
@@ -76,11 +76,11 @@ namespace ZetaToXrayBackend.Service
                                     }
                                 }
                                 else
-                                {
+                        {
                                     break;
                                 }
                             }
-                        }                                             
+                        }
                     }
                 }
             }
