@@ -71,7 +71,24 @@ namespace ZetaToXrayFrontend.Converter
                 {
                     testCaseXray.TCID = testCaseZeta.TestFallID;
                     testCaseXray.TestSummary = testCaseZeta.TestFallTitel;
-                    testCaseXray.TestPriority = testCaseZeta.Testpriorität;
+
+                    if (testCaseZeta.Testpriorität == "3 - Niedrig  =  Kann")
+                    {
+                        testCaseXray.TestPriority = "Medium";
+                    }
+                    else if (testCaseZeta.Testpriorität == "2 - Mittel      =  Soll")
+                    {
+                        testCaseXray.TestPriority = "High";
+                    }
+                    else if (testCaseZeta.Testpriorität == "1 - Hoch = Muss")
+                    {
+                        testCaseXray.TestPriority = "Highest";
+                    }
+                    else if (testCaseZeta.Testpriorität == "")
+                    {
+                        testCaseXray.TestPriority = "Lowest";
+                    }
+
                     testCaseXray.Discription = testCaseZeta.TestFallBeschreibung;
                     testCaseXray.Components = testCaseZeta.Hierachie;
                     testCaseXray.MaxExecutions = "1";
