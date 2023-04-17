@@ -2,10 +2,72 @@
 {
     public class TestStepXray
     {
-        public int TCID { get; set; }
-        public string? TestStepAction { get; set; }
-        public string? TestStepData { get; set; }
-        public string? TestStepResult { get; set; }
+        private int tcid;
+        private string testStepAction = "";
+        private string testStepData = "";
+        private string testStepResult = "";
 
+        public int TCID
+        {
+            get { return tcid; }
+            set { tcid = value; }
+        }
+
+        public string TestStepAction
+        {
+            get
+            {
+                return testStepAction;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    testStepAction = value;
+                }
+                else
+                {
+                    testStepAction = "";
+                }
+            }
+        }
+
+        public string TestStepData
+        {
+            get
+            {
+                return testStepData;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    testStepData = value;
+                }
+                else
+                {
+                    testStepData = "";
+                }
+            }
+        }
+
+        public string TestStepResult
+        {
+            get
+            {
+                return testStepResult;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    testStepResult = value;
+                }
+                else
+                {
+                    testStepResult = "";
+                }
+            }
+        }
     }
 }
