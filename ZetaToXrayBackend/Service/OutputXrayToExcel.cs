@@ -76,7 +76,7 @@ namespace ZetaToXrayBackend.Service
                                     }
                                 }
                                 else
-                        {
+                                {
                                     break;
                                 }
                             }
