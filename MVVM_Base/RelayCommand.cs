@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace ZetaToXrayFrontend.ViewModels
+namespace MVVM_Base
 {
     public class RelayCommand : ICommand
     {
-        private Action<object> execute;
-        private Predicate<object> canExecute;
+        private Action<object> executeHandler;
+        private Predicate<object> canExecuteHandler;
         private event EventHandler CanExecuteChangedinternal;
 
         public RelayCommand(Action<object> execute) : this(execute, DefaultCanExecute)
@@ -17,14 +17,14 @@ namespace ZetaToXrayFrontend.ViewModels
         {
             if (execute == null)
             {
-                throw new ArgumentNullException("execute");
+                throw new ArgumentNullException("Execute kann nicht null sein!");
             }
             if (canExecute == null)
             {
-                throw new ArgumentNullException("canExecute");
+                throw new ArgumentNullException("CanExecute kannnicht null sein");
             }
-            this.execute = execute;
-            this.canExecute = canExecute;
+            executeHandler = execute;
+            canExecuteHandler = canExecute;
         }
 
         public event EventHandler CanExecuteChanged
@@ -43,12 +43,16 @@ namespace ZetaToXrayFrontend.ViewModels
 
         public bool CanExecute(object parameter)
         {
-            return this.canExecute != null && this.canExecute(parameter);
+            if (canExecuteHandler == null)
+            {
+                return true;
+            }
+            return canExecuteHandler != null && canExecuteHandler(parameter);
         }
 
         public void Execute(object parameter)
         {
-            this.execute(parameter);
+            executeHandler(parameter);
         }
 
         public void OnCanExecuteChanged()
@@ -63,8 +67,8 @@ namespace ZetaToXrayFrontend.ViewModels
 
         public void Destroy()
         {
-            this.canExecute = _ => false;
-            this.execute = _ => { return; };
+            this.canExecuteHandler = _ => false;
+            this.executeHandler = _ => { return; };
         }
 
         private static bool DefaultCanExecute(object parameter)

@@ -158,7 +158,7 @@ namespace ZetaToXrayBackend.Service.Converter
             return testCaseXrayList;
         }
 
-        public List<PreConditionXray> CreatePreConditionXray(List<TestCaseZeta> testCaseZetaList)
+        public List<PreConditionXray> CreatePreConditionXrayList(List<TestCaseZeta> testCaseZetaList)
         {
             return preConditionXrayList;
         }

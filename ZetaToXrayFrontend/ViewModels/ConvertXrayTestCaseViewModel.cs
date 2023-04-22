@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MVVM_Base;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -7,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace ZetaToXrayFrontend.ViewModels
 {
-    public class ConvertToXrayTestCaseViewModel : INotifyPropertyChanged
+    public class ConvertXrayTestCaseViewModel : ViewModelBase
     {
-        public event PropertyChangedEventHandler? PropertyChanged;
+
     }
 }
