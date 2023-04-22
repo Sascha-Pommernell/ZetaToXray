@@ -1,23 +1,35 @@
-﻿using MahApps.Metro.Controls.Dialogs;
-using MahApps.Metro.Controls;
+﻿using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Data;
+using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 using ZetaToXrayFrontend.UCs;
 
-namespace ZetaToXrayFrontend
+namespace ZetaToXrayFrontend.View
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaktionslogik für ZetaToXrayView.xaml
     /// </summary>
-    public partial class MainWindow : MetroWindow
+    public partial class ZetaToXrayView : MetroWindow
     {
-        private Einstellungen? _Einstellungen;
-        private Umstellung? _Umstellung;
+        private ImportZetaTestCase? _ImportZetaTestCase;
+        private ConvertToXrayTestCase? _ConvertToXrayTestCase;
+        private ConvertToXrayPreNotification? _ConvertToXrayPreNotification;
+        private Settings? _Settings;
 
-        public MainWindow()
+        public ZetaToXrayView()
         {
             InitializeComponent();
         }
@@ -29,8 +41,10 @@ namespace ZetaToXrayFrontend
 
         private void Init()
         {
-            _Einstellungen = new Einstellungen();
-            _Umstellung = new Umstellung();
+            _ImportZetaTestCase = new ImportZetaTestCase();
+            _ConvertToXrayTestCase = new ConvertToXrayTestCase();
+            _ConvertToXrayPreNotification = new ConvertToXrayPreNotification();
+            _Settings = new Settings();;
         }
 
         private void BtnWindowsMinimizer_Click(object sender, RoutedEventArgs e)
@@ -121,7 +135,7 @@ namespace ZetaToXrayFrontend
 
         private void MoveMenuCurser(int listViewSelectedIndex)
         {
-            var listViewItemHeight = ListViewItemUmstellung.Height;
+            var listViewItemHeight = ListViewItemConvertToXrayTestCase.Height;
 
             if (listViewSelectedIndex < 0) return;
 
@@ -140,11 +154,19 @@ namespace ZetaToXrayFrontend
             {
                 case 0:
                     UCsPlaceHoldergrid.Children.Clear();
-                    UCsPlaceHoldergrid.Children.Add(_Einstellungen);
+                    UCsPlaceHoldergrid.Children.Add(_ImportZetaTestCase);
                     break;
                 case 1:
                     UCsPlaceHoldergrid.Children.Clear();
-                    UCsPlaceHoldergrid.Children.Add(_Umstellung);
+                    UCsPlaceHoldergrid.Children.Add(_ConvertToXrayTestCase);
+                    break;
+                case 2:
+                    UCsPlaceHoldergrid.Children.Clear();
+                    UCsPlaceHoldergrid.Children.Add(_ConvertToXrayPreNotification);
+                    break;
+                case 3:
+                    UCsPlaceHoldergrid.Children.Clear();
+                    UCsPlaceHoldergrid.Children.Add(_Settings);
                     break;
                 default:
                     break;

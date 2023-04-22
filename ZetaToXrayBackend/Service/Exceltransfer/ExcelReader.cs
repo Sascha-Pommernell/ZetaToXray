@@ -1,23 +1,22 @@
-﻿using System;
-using System.Windows;
-using Excel = Microsoft.Office.Interop.Excel;
+﻿using Excel = Microsoft.Office.Interop.Excel;
 using Range = Microsoft.Office.Interop.Excel.Range;
 
-namespace ZetaToXrayFrontend.ExcelControl
+namespace ZetaToXrayBackend.Service.Exceltransfer
 {
     public class ExcelReader
     {
         private static int lineStart = 2;
         private static int columnsStart = 1;
-        private static int lineEnd = 10000; 
-        private static int columnsEnd = 21;        
+        private static int lineEnd = 10000;
+        private static int columnsEnd = 21;
         private string pathExcelRead;
-        private string[,]? excelRead;
+        private object[,] input = new object[lineEnd - lineStart, columnsEnd - columnsStart];
+        private string[,] excelArry = new string[lineEnd - lineStart, columnsEnd - columnsStart];
 
         public ExcelReader(string _pathExcelRead)
         {
-            pathExcelRead = _pathExcelRead;                        
-        }        
+            pathExcelRead = _pathExcelRead;
+        }
 
         public string[,] CreateExcelArry()
         {
@@ -26,7 +25,7 @@ namespace ZetaToXrayFrontend.ExcelControl
             Excel.Workbook workbook;
             Excel.Sheets sheets;
             Excel.Worksheet worksheet;
-            Excel.Range cells;
+            Range cells;
 
             application = new Excel.Application();
             application.Visible = false;
@@ -39,8 +38,7 @@ namespace ZetaToXrayFrontend.ExcelControl
 
             Range range = (Range)worksheet.Range[worksheet.Cells[lineStart, columnsStart], worksheet.Cells[lineEnd, columnsEnd]];
 
-            object[,] input = range.Value2;
-            string[,] excelArry = new string[lineEnd - lineStart, columnsEnd - columnsStart];
+            input = range.Value2;
 
             for (int cellLine = 2; cellLine <= lineEnd - lineStart; cellLine++)
             {
@@ -49,7 +47,7 @@ namespace ZetaToXrayFrontend.ExcelControl
                     if (input[cellLine, 1] == null)
                     {
                         cellLine = lineEnd - lineStart + 1;
-                        cellColumn = columnsEnd - columnsStart + 1;                        
+                        cellColumn = columnsEnd - columnsStart + 1;
                     }
                     else
                     {
@@ -58,7 +56,18 @@ namespace ZetaToXrayFrontend.ExcelControl
                 }
             }
 
-            return excelArry;            
+            ExcelProcessKill();
+            
+            return excelArry;
+        }
+
+        private void ExcelProcessKill()
+        {
+            System.Diagnostics.Process[] processes = System.Diagnostics.Process.GetProcessesByName("Excel");
+            foreach (System.Diagnostics.Process process in processes)
+            {
+                process.Kill();
+            }
         }
     }
 }

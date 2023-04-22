@@ -3,9 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZetaToXrayFrontend", "ZetaToXrayFrontend\ZetaToXrayFrontend.csproj", "{AC32821C-B8A9-4119-B87D-3D78CB75165F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZetaToXrayFrontend", "ZetaToXrayFrontend\ZetaToXrayFrontend.csproj", "{AC32821C-B8A9-4119-B87D-3D78CB75165F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4CC05F6C-5796-40F9-B99E-C3ECB3318F66} = {4CC05F6C-5796-40F9-B99E-C3ECB3318F66}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZetaToXrayBackend", "ZetaToXrayBackend\ZetaToXrayBackend.csproj", "{4CC05F6C-5796-40F9-B99E-C3ECB3318F66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZetaToXrayBackend", "ZetaToXrayBackend\ZetaToXrayBackend.csproj", "{4CC05F6C-5796-40F9-B99E-C3ECB3318F66}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

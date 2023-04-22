@@ -1,8 +1,8 @@
-﻿namespace ZetaToXrayBackend.Model
+﻿namespace ZetaToXrayBackend.Model.Zeta
 {
     public class TestCaseZeta
     {
-        private int testFallID;
+        private string testFallID = "";
         private string testeinheitTitel = "";
         private string testeinheitBeschreibung = "";
         private string testFallTitel = "";
@@ -24,10 +24,23 @@
         private string testdaten = "";
         private string jiraTicket = "";
 
-        public int TestFallID
+        public string TestFallID
         {
-            get { return testFallID; }
-            set { testFallID = value; }
+            get
+            {
+                return testFallID;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    testFallID = value;
+                }
+                else
+                {
+                    testFallID = "";
+                }
+            }
         }
 
         public string TesteinheitTitel
@@ -186,13 +199,13 @@
         {
             get
             {
-                return TestFallAenderungsBenutzer;
+                return testFallAenderungsBenutzer;
             }
             set
             {
                 if (value != null)
                 {
-                    TestFallAenderungsBenutzer = value;
+                    testFallAenderungsBenutzer = value;
                 }
                 else
                 {

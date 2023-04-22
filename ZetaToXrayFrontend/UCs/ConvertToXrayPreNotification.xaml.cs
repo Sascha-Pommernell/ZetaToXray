@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace ZetaToXrayFrontend.UCs
 {
     /// <summary>
-    /// Interaktionslogik für Einstellungen.xaml
+    /// Interaktionslogik für ConvertToXrayPreNotification.xaml
     /// </summary>
-    public partial class Einstellungen : UserControl
+    public partial class ConvertToXrayPreNotification : UserControl
     {
-        public Einstellungen()
+        public ConvertToXrayPreNotification()
         {
             InitializeComponent();
         }

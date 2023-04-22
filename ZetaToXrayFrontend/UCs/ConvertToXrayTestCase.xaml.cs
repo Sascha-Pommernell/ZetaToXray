@@ -18,9 +18,9 @@ namespace ZetaToXrayFrontend.UCs
     /// <summary>
     /// Interaktionslogik für Umstellung.xaml
     /// </summary>
-    public partial class Umstellung : UserControl
+    public partial class ConvertToXrayTestCase : UserControl
     {
-        public Umstellung()
+        public ConvertToXrayTestCase()
         {
             InitializeComponent();
         }

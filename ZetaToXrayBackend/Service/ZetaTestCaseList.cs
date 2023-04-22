@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ZetaToXrayBackend.Model;
+﻿using System.Collections.Generic;
+using ZetaToXrayBackend.Model.Zeta;
 
 namespace ZetaToXrayBackend.Service
 {
@@ -33,7 +29,7 @@ namespace ZetaToXrayBackend.Service
                                 testCaseZeta.TesteinheitBeschreibung = excelinput[cellLine, 2];
                                 break;
                             case 3:
-                                testCaseZeta.TestFallID = int.Parse(excelinput[cellLine, 3]);
+                                testCaseZeta.TestFallID = excelinput[cellLine, 3];
                                 break;
                             case 4:
                                 testCaseZeta.TestFallTitel = excelinput[cellLine, 4];

@@ -1,16 +1,29 @@
-﻿namespace ZetaToXrayBackend.Model
+﻿namespace ZetaToXrayBackend.Model.Xray
 {
     public class TestStepXray
     {
-        private int tcid;
+        private string tcid = "";
         private string testStepAction = "";
         private string testStepData = "";
         private string testStepResult = "";
 
-        public int TCID
+        public string TCID
         {
-            get { return tcid; }
-            set { tcid = value; }
+            get
+            {
+                return tcid;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    tcid = value;
+                }
+                else
+                {
+                    tcid = "";
+                }
+            }
         }
 
         public string TestStepAction

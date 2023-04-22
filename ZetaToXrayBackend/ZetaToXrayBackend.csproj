@@ -17,9 +17,5 @@
       <EmbedInteropTypes>true</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\ZetaToXrayFrontend\ZetaToXrayFrontend.csproj" />
-  </ItemGroup>
-
+	
 </Project>
