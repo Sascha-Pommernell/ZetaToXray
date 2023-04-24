@@ -6,14 +6,12 @@ namespace MVVM_Base
 {
     public abstract class ViewModelBase : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler? PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
 
-        protected void SetProperty<T>(ref T storage, T value, [CallerMemberName] string property = null)
+        public void RaisePropertyChange([CallerMemberName] string propertyName = "")
         {
-            if (Object.Equals(storage, value)) return;
-            storage = value;
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(property));
+           if(!string.IsNullOrEmpty(propertyName))
+                this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

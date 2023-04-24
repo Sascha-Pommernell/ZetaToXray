@@ -6,8 +6,14 @@
              xmlns:local="clr-namespace:ZetaToXrayFrontend.UCs"
              xmlns:MW="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:MD="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:vm="clr-namespace:ZetaToXrayFrontend.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="650" d:DesignWidth="1200">
+
+    <UserControl.DataContext>
+        <vm:ImportZetaTestCaseViewModel/>
+    </UserControl.DataContext>
+
     <Grid Background="{StaticResource AppBrushColorBlue}" Margin="4 2">
         <MD:TransitioningContent OpeningEffect="{MD:TransitionEffect Kind=ExpandIn,Duration=0:0:0:001}">
             <Grid>
@@ -26,17 +32,18 @@
                 </Grid>
 
                 <Grid Grid.Row="1" SnapsToDevicePixels="True" UseLayoutRounding="True">
-                    <DataGrid x:Name="DataGridImportZetaTestCase" SnapsToDevicePixels="True" UseLayoutRounding="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                    <DataGrid x:Name="DataGridImportZetaTestCase" ItemsSource="{Binding TestCaseZetas}" SnapsToDevicePixels="True" UseLayoutRounding="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" CanUserAddRows="False" AutoGenerateColumns="True">
 
                     </DataGrid>
 
-                    <MW:MetroProgressBar x:Name="progressBarImportZetaTestCase" Visibility="Hidden" Foreground="{StaticResource AppBrushColorCyanHover}" Width="80" Height="80"></MW:MetroProgressBar>
+
                 </Grid>
 
                 <Grid Grid.Row="2">
-                    <Button x:Name="BtnImportZetaTestCase" Content="Import" Width="150" Height="30" Margin="0,0,1040,0"></Button>
+                    <Button x:Name="BtnImportZetaTestCase" Content="Import" Width="150" Height="30" Margin="0,0,1040,0" Command="{Binding LoadList}"></Button>
                     <Button x:Name="BtnNextXrayTestCase" Content="Konvertierung Xray Testfälle" Width="250" Height="30" Margin="0,0,630,0"></Button>
                     <Button x:Name="BtnNextXrayPreNotification" Content="Konvertierung Xray Vorbedingung" Width="250" Height="30" Margin="0,0,120,0"></Button>
+                    <MW:MetroProgressBar x:Name="progressBarImportZetaTestCase" Visibility="Visible" Background="{StaticResource AppBrushColorBlue}" Foreground="{StaticResource AppBrushColorCyanHover}" Margin="927,11,25,9" RenderTransformOrigin="1.99,0.51" IsIndeterminate="{Binding IsLoading}" />
                 </Grid>
             </Grid>
         </MD:TransitioningContent>

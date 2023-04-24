@@ -8,14 +8,14 @@ namespace ZetaToXrayBackend.Service.Exceltransfer
         private static int lineStart = 2;
         private static int columnsStart = 1;
         private static int lineEnd = 10000;
-        private static int columnsEnd = 21;
+        private static int columnsEnd = 30;
         private string pathExcelRead;
         private object[,] input = new object[lineEnd - lineStart, columnsEnd - columnsStart];
         private string[,] excelArry = new string[lineEnd - lineStart, columnsEnd - columnsStart];
 
         public ExcelReader(string _pathExcelRead)
         {
-            pathExcelRead = _pathExcelRead;
+            pathExcelRead = @_pathExcelRead;
         }
 
         public string[,] CreateExcelArry()
@@ -44,10 +44,9 @@ namespace ZetaToXrayBackend.Service.Exceltransfer
             {
                 for (int cellColumn = 1; cellColumn <= columnsEnd - columnsStart; cellColumn++)
                 {
-                    if (input[cellLine, 1] == null)
+                    if (input[cellLine, cellColumn] == null)
                     {
-                        cellLine = lineEnd - lineStart + 1;
-                        cellColumn = columnsEnd - columnsStart + 1;
+                        input[cellLine, cellColumn] = " ";
                     }
                     else
                     {

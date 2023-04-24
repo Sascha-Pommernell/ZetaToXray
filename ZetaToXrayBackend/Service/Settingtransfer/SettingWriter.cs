@@ -10,12 +10,15 @@ namespace ZetaToXrayBackend.Service.Settingtransfer
 {
     public class SettingWriter
     {
+        private string fileNameExport = @"\Setting_Excel_Export.txt";
+        private string fileNameImport = @"\Setting_Excel_Import.txt";
+
         public void WriteSettingsExcelExport(string settings)
         {
             if (Directory.GetParent(Directory.GetCurrentDirectory())?.Parent?.FullName != null)
             {
                 string? path = Directory.GetParent(Directory.GetCurrentDirectory())?.Parent?.FullName;
-                string settingFilePath = path + @"ZetaToXray\ZetaToXrayBackend\SettingFile\Setting_Excel_Export.txt";
+                string settingFilePath = path + fileNameExport;
 
                 using (FileStream fileStreamWrite = File.Create(settingFilePath))
                 {
@@ -32,7 +35,7 @@ namespace ZetaToXrayBackend.Service.Settingtransfer
             if (Directory.GetParent(Directory.GetCurrentDirectory())?.Parent?.FullName != null)
             {
                 string? path = Directory.GetParent(Directory.GetCurrentDirectory())?.Parent?.FullName;
-                string settingFilePath = path + @"ZetaToXray\ZetaToXrayBackend\SettingFile\Setting_Excel_Import.txt";
+                string settingFilePath = path + fileNameImport;
 
                 using (FileStream fileStreamWrite = File.Create(settingFilePath))
                 {
