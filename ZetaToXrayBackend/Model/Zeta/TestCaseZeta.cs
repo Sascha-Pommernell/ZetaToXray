@@ -15,7 +15,7 @@
         private string erwartetesErgebnis = "";
         private string vorbedingung = "";
         private string testschritte = "";
-        private string anforderungsKapizelID = "";
+        private string anforderungsKapitelID = "";
         private string reviewBearbeitungsstatus = "";
         private string reviewGruppe = "";
         private string tfsRequirementBugID = "";
@@ -271,21 +271,21 @@
             }
         }
 
-        public string AnforderungsKapizelID
+        public string AnforderungsKapitelID
         {
             get
             {
-                return anforderungsKapizelID;
+                return anforderungsKapitelID;
             }
             set
             {
                 if (value != null)
                 {
-                    anforderungsKapizelID = value;
+                    anforderungsKapitelID = value;
                 }
                 else
                 {
-                    anforderungsKapizelID = "";
+                    anforderungsKapitelID = "";
                 }
             }
         }

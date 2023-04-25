@@ -32,18 +32,35 @@
                 </Grid>
 
                 <Grid Grid.Row="1" SnapsToDevicePixels="True" UseLayoutRounding="True">
-                    <DataGrid x:Name="DataGridImportZetaTestCase" ItemsSource="{Binding TestCaseZetas}" SnapsToDevicePixels="True" UseLayoutRounding="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" CanUserAddRows="False" AutoGenerateColumns="True">
+                    <DataGrid x:Name="DataGridImportZetaTestCase" ItemsSource="{Binding TestCaseZetas}" SnapsToDevicePixels="True" UseLayoutRounding="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" CanUserAddRows="False" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Test Fall ID " Binding="{Binding TestFallID}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Testeinheit Titel " Binding="{Binding TesteinheitTitel}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Testeinheit Beschreibung " Binding="{Binding TesteinheitBeschreibung}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Testfall Titel " Binding="{Binding TestFallTitel}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Hierachie " Binding="{Binding Hierachie}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Testfall Beschreibung " Binding="{Binding TestFallBeschreibung}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Varianten " Binding="{Binding Variante}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Testfall Datum " Binding="{Binding TestfallDatum}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Testfall Erstbenutzer " Binding="{Binding TestFallErstBenutzer}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Testfall Änderungsbenutzer " Binding="{Binding TestFallAenderungsBenutzer}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Erwartetes Ergebnis " Binding="{Binding ErwartetesErgebnis}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Vorbedingung " Binding="{Binding Vorbedingung}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Testschritte " Binding="{Binding Testschritte}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Anforderungskapitel ID" Binding="{Binding AnforderungsKapitelID}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Review Bearbeitungsstatus " Binding="{Binding ReviewBearbeitungsstatus}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Review Gruppe " Binding="{Binding ReviewGruppe}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="TFS Requirement Feature " Binding="{Binding TFSRequirementFeature}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Testdaten " Binding="{Binding Testdaten}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Jira Ticket " Binding="{Binding JiraTicket}"></DataGridTextColumn>
+                        </DataGrid.Columns>
 
                     </DataGrid>
-
-
                 </Grid>
 
                 <Grid Grid.Row="2">
-                    <Button x:Name="BtnImportZetaTestCase" Content="Import" Width="150" Height="30" Margin="0,0,1040,0" Command="{Binding LoadList}"></Button>
-                    <Button x:Name="BtnNextXrayTestCase" Content="Konvertierung Xray Testfälle" Width="250" Height="30" Margin="0,0,630,0"></Button>
-                    <Button x:Name="BtnNextXrayPreNotification" Content="Konvertierung Xray Vorbedingung" Width="250" Height="30" Margin="0,0,120,0"></Button>
-                    <MW:MetroProgressBar x:Name="progressBarImportZetaTestCase" Visibility="Visible" Background="{StaticResource AppBrushColorBlue}" Foreground="{StaticResource AppBrushColorCyanHover}" Margin="927,11,25,9" RenderTransformOrigin="1.99,0.51" IsIndeterminate="{Binding IsLoading}" />
+                    <Button x:Name="BtnImportZetaTestCase" Content="Import" VerticalAlignment="Center" HorizontalAlignment="Left" Width="150" Height="30" Margin="0,0,1040,0" Command="{Binding LoadList}"></Button>
+                    <MW:MetroProgressBar x:Name="progressBarImportZetaTestCase" Visibility="Visible" Background="{StaticResource AppBrushColorBlue}" Foreground="{StaticResource AppBrushColorCyanHover}" Margin="990,0,0,0" Width="200" Height="20" IsIndeterminate="{Binding IsLoading}" />
                 </Grid>
             </Grid>
         </MD:TransitioningContent>

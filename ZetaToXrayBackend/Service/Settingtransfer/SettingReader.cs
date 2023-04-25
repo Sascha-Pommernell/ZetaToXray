@@ -5,43 +5,14 @@ namespace ZetaToXrayBackend.Service.Settingtransfer
 {
     public class SettingReader
     {
-        private string fileNameExport = @"\Setting_Excel_Export.txt";
-        private string fileNameImport = @"\Setting_Excel_Import.txt";
+        private string fileNameExport = @"Setting_Excel_Export.txt";
+        private string fileNameImport = @"Setting_Excel_Import.txt";
         
-        public string ReadSettingExcelExport()
+        private string ReadeFile(string filename)
         {
-            string stettings = "";
-
-
-            /*if (Directory.GetParent(Directory.GetCurrentDirectory())?.Parent?.FullName != null)
-            {
-                //string? path = Directory.GetParent(Directory.GetCurrentDirectory())?.Parent?.FullName;
-                string path = @"D:\Entwicklung\Visual_Studio\ZetaToXray\ZetaToXrayBackend\SettingFile";
-                string settingFilePath = path + fileNameExport;
-
-                if (File.Exists(settingFilePath) == true)
-                {
-                    using (FileStream fileStreamRead = File.OpenRead(settingFilePath))
-                    {
-                        using (StreamReader streamReader = new StreamReader(fileStreamRead))
-                        {
-                            stettings = streamReader.ReadToEnd();
-                            return stettings;
-                        }
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Die Setting-Datei kann nicht gefunden werden!");
-                }
-            }
-            else
-            {
-                MessageBox.Show("Der Speicherort der Setting-Datei kann nicht ermittelt werden.");
-            }*/
-
-            string path = @"D:\Entwicklung\Visual_Studio\ZetaToXray\ZetaToXrayBackend\SettingFile";
-            string settingFilePath = path + fileNameExport;
+            SettingWriter writer = new SettingWriter();
+            string settingFilePath = writer.PathInfo() + @"\" + filename;
+            string settings;
 
             if (File.Exists(settingFilePath) == true)
             {
@@ -49,70 +20,31 @@ namespace ZetaToXrayBackend.Service.Settingtransfer
                 {
                     using (StreamReader streamReader = new StreamReader(fileStreamRead))
                     {
-                        stettings = streamReader.ReadToEnd();
-                        return stettings;
+                        settings = streamReader.ReadToEnd();
+                        return settings;
                     }
                 }
             }
             else
             {
                 MessageBox.Show("Die Setting-Datei kann nicht gefunden werden!");
+                return "";
             }
-            return stettings;
+        }
+        
+        
+        public string ReadSettingExcelExport()
+        {
+            string settings = ReadeFile(fileNameExport);
+
+            return settings;
         }
 
         public string ReadSettingExcelImport()
         {
-            string stettings = "";
+            string settings = ReadeFile(fileNameImport);
 
-
-            /*if (Directory.GetParent(Directory.GetCurrentDirectory())?.Parent?.FullName != null)
-              {
-                  //string? Path = Directory.GetParent(Directory.GetCurrentDirectory())?.Parent?.FullName;
-
-                  string path = @"D:\Entwicklung\Visual_Studio\ZetaToXray\ZetaToXrayBackend\SettingFile";
-                  string settingFilePath = path + fileNameImport;
-
-                  if (File.Exists(settingFilePath) == true)
-                  {
-                      using (FileStream fileStreamRead = File.OpenRead(settingFilePath))
-                      {
-                          using (StreamReader streamReader = new StreamReader(fileStreamRead))
-                          {
-                              stettings = streamReader.ReadToEnd();
-                              return stettings;
-                          }
-                      }
-                  }
-                  else
-                  {
-                      MessageBox.Show("Die Setting-Datei kann nicht gefunden werden!");
-                  }
-              }
-              else
-              {
-                  MessageBox.Show("Der Speicherort der Setting-Datei kann nicht ermittelt werden.");
-              }*/
-
-            string path = @"D:\Entwicklung\Visual_Studio\ZetaToXray\ZetaToXrayBackend\SettingFile";
-            string settingFilePath = path + fileNameImport;
-
-            if (File.Exists(settingFilePath) == true)
-            {
-                using (FileStream fileStreamRead = File.OpenRead(settingFilePath))
-                {
-                    using (StreamReader streamReader = new StreamReader(fileStreamRead))
-                    {
-                        stettings = streamReader.ReadToEnd();
-                        return stettings;
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Die Setting-Datei kann nicht gefunden werden!");
-            }
-            return stettings;
+            return settings;
         }
     }
 }

@@ -32,7 +32,7 @@ namespace ZetaToXrayBackend.Service
                     testCaseZeta.ErwartetesErgebnis = excelinput[cellLine, 10];                                
                     testCaseZeta.Vorbedingung = excelinput[cellLine, 11];                                
                     testCaseZeta.Testschritte = excelinput[cellLine, 12];                               
-                    testCaseZeta.AnforderungsKapizelID = excelinput[cellLine, 13];                                
+                    testCaseZeta.AnforderungsKapitelID = excelinput[cellLine, 13];                                
                     testCaseZeta.ReviewBearbeitungsstatus = excelinput[cellLine, 14];                              
                     testCaseZeta.ReviewGruppe = excelinput[cellLine, 15];                                
                     testCaseZeta.TFSRequirementBugID = excelinput[cellLine, 16];

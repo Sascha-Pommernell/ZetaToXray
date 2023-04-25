@@ -16,6 +16,9 @@ namespace ZetaToXrayFrontend.ViewModels
     {
         private bool isLoading;
         public TestCaseZeta TestCaseZeta { get; set; } = null!;
+        public DelegateCommand LoadList { get; set; }
+        public ObservableCollection<TestCaseZeta> TestCaseZetas { get; set; }
+        public List<TestCaseZeta> ListZetaTestCase = new List<TestCaseZeta>();
         public bool IsLoading
         {
             get => isLoading;
@@ -28,9 +31,7 @@ namespace ZetaToXrayFrontend.ViewModels
                 }
             }
         }
-        public DelegateCommand LoadList { get; set; }
-        public ObservableCollection<TestCaseZeta> TestCaseZetas { get; set; }
-        public List<TestCaseZeta> ListZetaTestCase = new List<TestCaseZeta>();
+
 
         public ImportZetaTestCaseViewModel()
         {
@@ -40,6 +41,7 @@ namespace ZetaToXrayFrontend.ViewModels
 
         private void ExecLoadList()
         {
+            //Todo: Hier den Öffnendialog implementieren
             this.IsLoading = true;
             var serviceTestCaseZeta = new DataListService();
             ListZetaTestCase = serviceTestCaseZeta.ZetaTestCaseListService();
@@ -51,6 +53,6 @@ namespace ZetaToXrayFrontend.ViewModels
             }
 
             this.IsLoading = false;
-        }        
+        }
     }
 }

@@ -10,41 +10,43 @@ namespace ZetaToXrayBackend.Service.Settingtransfer
 {
     public class SettingWriter
     {
-        private string fileNameExport = @"\Setting_Excel_Export.txt";
-        private string fileNameImport = @"\Setting_Excel_Import.txt";
+        private string fileNameExport = @"Setting_Excel_Export.txt";
+        private string fileNameImport = @"Setting_Excel_Import.txt";
+        private string path = @"c:\tmpZetaToxtay";
 
-        public void WriteSettingsExcelExport(string settings)
+        private void CreateDitectory()
         {
-            if (Directory.GetParent(Directory.GetCurrentDirectory())?.Parent?.FullName != null)
+            Directory.CreateDirectory(path);
+        }
+
+        private void CreateWriteFile( string path, string filename, string setting)
+        {
+            string settingFilePath = path + @"\" + filename;
+
+            using (FileStream fileStreamWrite = File.Create(settingFilePath))
             {
-                string? path = Directory.GetParent(Directory.GetCurrentDirectory())?.Parent?.FullName;
-                string settingFilePath = path + fileNameExport;
-
-                using (FileStream fileStreamWrite = File.Create(settingFilePath))
-                {
-                    byte[] settingConvertedToBytes = Encoding.ASCII.GetBytes(settings);
-                    fileStreamWrite.Write(settingConvertedToBytes, 0, settingConvertedToBytes.Length);
-                }
-
-                MessageBox.Show("Die Einstellungen wurden gespeichert.");
+                byte[] settingConvertedToBytes = Encoding.ASCII.GetBytes(setting);
+                fileStreamWrite.Write(settingConvertedToBytes, 0, settingConvertedToBytes.Length);
             }
+
+            MessageBox.Show("Die Einstellungen wurden gespeichert.");
+        }
+        
+        public void WriteSettingsExcelExport(string setting)
+        { 
+            CreateWriteFile(path, fileNameExport, setting);
         }
 
         public void WriteSettingsExcelImport(string settings)
         {
-            if (Directory.GetParent(Directory.GetCurrentDirectory())?.Parent?.FullName != null)
-            {
-                string? path = Directory.GetParent(Directory.GetCurrentDirectory())?.Parent?.FullName;
-                string settingFilePath = path + fileNameImport;
+            CreateWriteFile(path, fileNameImport, settings);
+        }
 
-                using (FileStream fileStreamWrite = File.Create(settingFilePath))
-                {
-                    byte[] settingConvertedToBytes = Encoding.ASCII.GetBytes(settings);
-                    fileStreamWrite.Write(settingConvertedToBytes, 0, settingConvertedToBytes.Length);
-                }
+        public string PathInfo()
+        {
+            string pathinfo = path;
 
-                MessageBox.Show("Die Einstellungen wurden gespeichert.");
-            }
+            return pathinfo;
         }
     }
 }

@@ -10,7 +10,7 @@
              d:DesignHeight="650" d:DesignWidth="1200">
     <Grid Background="{StaticResource AppBrushColorBlue}" Margin="4 2">
         <MD:TransitioningContent OpeningEffect="{MD:TransitionEffect Kind=ExpandIn,Duration=0:0:0:001}">
-            <Grid>                
+            <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
@@ -27,15 +27,16 @@
 
                 <Grid Grid.Row="1" SnapsToDevicePixels="True" UseLayoutRounding="True">
                     <DataGrid x:Name="DataGridXrayTestCase" SnapsToDevicePixels="True" UseLayoutRounding="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                        
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Test"></DataGridTextColumn>
+                        </DataGrid.Columns>
                     </DataGrid>
-
-                    <MW:MetroProgressBar x:Name="progressBar" Visibility="Hidden" Foreground="{StaticResource AppBrushColorCyanHover}" Width="80" Height="80"></MW:MetroProgressBar>
                 </Grid>
 
                 <Grid Grid.Row="2">
-                    <Button x:Name="ConvertXrayTestCase" Content="Konvertieren" Width="150" Height="30" Margin="0,0,1040,0"></Button>
-                    <Button x:Name="ExportXrayTestCase" Content="Exportieren" Width="150" Height="30" Margin="0,0,730,0"></Button>
+                    <Button x:Name="ConvertXrayTestCase" Content="Konvertieren" VerticalAlignment="Center" HorizontalAlignment="Left" Width="150" Height="30" Margin="0,0,1040,0"></Button>
+                    <Button x:Name="ExportXrayTestCase" Content="Exportieren" VerticalAlignment="Center"  Width="150" Height="30" Margin="0,0,730,0"/>
+                    <MW:MetroProgressBar x:Name="progressBar" VerticalAlignment="Center" HorizontalAlignment="Right" Visibility="Visible" Background="{StaticResource AppBrushColorBlue}" Foreground="{StaticResource AppBrushColorCyanHover}" Margin="990,0,0,0" IsIndeterminate="True" Width="200" Height="20"></MW:MetroProgressBar>
                 </Grid>
             </Grid>
         </MD:TransitioningContent>

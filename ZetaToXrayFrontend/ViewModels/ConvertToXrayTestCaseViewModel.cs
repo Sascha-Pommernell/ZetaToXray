@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace ZetaToXrayFrontend.ViewModels
 {
-    public class ConvertXrayTestCaseViewModel : ViewModelBase
+    public class ConvertToXrayTestCaseViewModel : ViewModelBase
     {
-
+        public event PropertyChangedEventHandler? PropertyChanged;
     }
 }

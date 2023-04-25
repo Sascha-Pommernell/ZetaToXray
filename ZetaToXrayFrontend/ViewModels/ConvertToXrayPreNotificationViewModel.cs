@@ -1,18 +1,15 @@
-﻿using MVVM_Base;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MVVM_Base;
 
 namespace ZetaToXrayFrontend.ViewModels
 {
-    public class SettingsViewModel : ViewModelBase
+    public class ConvertToXrayPreNotificationViewModel : ViewModelBase
     {
-        public SettingsViewModel() 
-        {
-
-        }
+        public event PropertyChangedEventHandler? PropertyChanged;
     }
 }

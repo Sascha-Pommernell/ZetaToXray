@@ -17,9 +17,5 @@
       <EmbedInteropTypes>true</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="SettingFile\" />
-  </ItemGroup>
 	
 </Project>
