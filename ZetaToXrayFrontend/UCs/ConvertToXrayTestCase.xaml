@@ -49,7 +49,7 @@
 
                 <Grid Grid.Row="2">
                     <Button x:Name="ConvertXrayTestCase" Content="Konvertieren" VerticalAlignment="Center" HorizontalAlignment="Left" Width="150" Height="30" Margin="0,0,1040,0" Command="{Binding ListConverter}" Cursor="Hand"></Button>
-                    <Button x:Name="ExportXrayTestCase" Content="Exportieren" VerticalAlignment="Center"  Width="150" Height="30" Margin="0,0,730,0"/>
+                    <Button x:Name="ExportXrayTestCase" Content="Exportieren" VerticalAlignment="Center"  Width="150" Height="30" Margin="0,0,730,0" Command="{Binding SaveList}"/>
                     <MW:MetroProgressBar x:Name="progressBar" VerticalAlignment="Center" HorizontalAlignment="Right" Visibility="Visible" Background="{StaticResource AppBrushColorBlue}" Foreground="{StaticResource AppBrushColorCyanHover}" Margin="990,0,0,0" Width="200" Height="20" IsIndeterminate="{Binding IsConvert}"/>
                 </Grid>
             </Grid>

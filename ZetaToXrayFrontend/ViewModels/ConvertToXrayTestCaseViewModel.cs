@@ -1,13 +1,11 @@
 ﻿using Microsoft.Win32;
 using MVVM_Base;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
+using System.Threading;
 using System.Windows;
+using System.Windows.Input;
 using ZetaToXrayBackend.Model.Xray;
 using ZetaToXrayBackend.Model.Zeta;
 using ZetaToXrayFrontend.Service;
@@ -19,7 +17,8 @@ namespace ZetaToXrayFrontend.ViewModels
         private bool isConvert;
         public List<TestCaseZeta> ListZetaTestCase = new List<TestCaseZeta>();
         public TestCaseXray TestCaseXray { get; set; } = null!;
-        public DelegateCommand ListConverter { get; set; }        
+        public DelegateCommand ListConverter { get; set; }
+        public DelegateCommand SaveList { get; set; }
         public ObservableCollection<TestCaseXray> TestCaseXrays { get; set; }
         public List<TestCaseXray> ListTestCaseXray = new List<TestCaseXray>();
 
@@ -39,6 +38,7 @@ namespace ZetaToXrayFrontend.ViewModels
         public ConvertToXrayTestCaseViewModel()
         {
             this.ListConverter = new DelegateCommand((o) => ConvertList());
+            this.SaveList = new DelegateCommand((o) => ExportList());
             this.TestCaseXrays = new ObservableCollection<TestCaseXray>();
         }
 
@@ -82,6 +82,36 @@ namespace ZetaToXrayFrontend.ViewModels
             {
                 MessageBox.Show("Der Dialog zum öffenen der Datei konnte nicht geöffnet werden!");
             }
+        }
+
+        private void ExportList()
+        {
+            string listExportPath = "";
+            SaveFileDialog dialog = new SaveFileDialog();
+
+            if (dialog != null)
+            {
+                dialog.Filter = "File (*.csv)|*.csv";
+                if (dialog.ShowDialog().Value)
+                {
+                    listExportPath = dialog.FileName;
+                }
+
+               if (listExportPath != "")
+                {
+                    ExportService exportService = new ExportService();
+                    exportService.ExportToExcelService(ListTestCaseXray, listExportPath);
+                }
+                else
+                {
+                    MessageBox.Show("Es wurden keine Informationen über den Speicherort und Dateinamen angegeben!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Es wurden keine Informationen über den Speicherort und Dateinamen angegeben!");
+            }
+
         }
     }
 }
