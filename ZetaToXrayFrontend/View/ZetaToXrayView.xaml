@@ -27,22 +27,12 @@
     <!--Windows Resources-->
     <Window.Resources>
         <Storyboard x:Key="AnimateMenuItems">
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ImportZetaTestCaseTranslateTransform" Storyboard.TargetProperty="X">
-                <EasingDoubleKeyFrame KeyTime="0" Value="-400"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0"/>
-            </DoubleAnimationUsingKeyFrames>
-
             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ConvertToXrayTestCaseTranslateTransform" Storyboard.TargetProperty="X">
                 <EasingDoubleKeyFrame KeyTime="0" Value="-400"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
-            
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ConvertToXrayPreNotificationTranslateTransform" Storyboard.TargetProperty="X">
-                <EasingDoubleKeyFrame KeyTime="0" Value="-400"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0"/>
-            </DoubleAnimationUsingKeyFrames>
 
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SettingsTranslateTransform" Storyboard.TargetProperty="X">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ConvertToXrayPreNotificationTranslateTransform" Storyboard.TargetProperty="X">
                 <EasingDoubleKeyFrame KeyTime="0" Value="-400"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
@@ -79,30 +69,7 @@
                                       ItemContainerStyle="{StaticResource ListViewItemStyle}"
                                       ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                       ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                                      SelectionChanged="MainMenuListView_SelectionChanged">
-
-                            <ListViewItem Name="ListViewItemImportZetaTestCase">
-                                <ListViewItem.RenderTransform>
-                                    <TranslateTransform x:Name="ImportZetaTestCaseTranslateTransform"/>
-                                </ListViewItem.RenderTransform>
-
-                                <StackPanel Orientation="Horizontal" Margin="8 0 0 0">
-                                    <MD:PackIcon 
-                                            Kind="Import"
-                                            Foreground="White"
-                                            Width="30" Height="30"
-                                            VerticalAlignment="Center">
-                                    </MD:PackIcon>
-
-                                    <Label 
-                                            Content="Import der Zeta - Testfälle"
-                                            Foreground="White"
-                                            Height="30"
-                                            VerticalAlignment="Bottom"
-                                            FontWeight="Bold">
-                                    </Label>
-                                </StackPanel>
-                            </ListViewItem>
+                                      SelectionChanged="MainMenuListView_SelectionChanged">                           
 
                             <ListViewItem Name="ListViewItemConvertToXrayTestCase">
                                 <ListViewItem.RenderTransform>
@@ -127,7 +94,6 @@
                                 </StackPanel>
                             </ListViewItem>
 
-
                             <ListViewItem Name="ListViewItemConvertToXrayPreNotification">
                                 <ListViewItem.RenderTransform>
                                     <TranslateTransform x:Name="ConvertToXrayPreNotificationTranslateTransform"/>
@@ -150,30 +116,6 @@
                                     </Label>
                                 </StackPanel>
                             </ListViewItem>
-
-                            <ListViewItem Name="ListViewItemSettings">
-                                <ListViewItem.RenderTransform>
-                                    <TranslateTransform x:Name="SettingsTranslateTransform"/>
-                                </ListViewItem.RenderTransform>
-
-                                <StackPanel Orientation="Horizontal" Margin="8 0 0 0">
-                                    <MD:PackIcon 
-                                            Kind="AccountEdit"
-                                            Foreground="White"
-                                            Width="30" Height="30"
-                                            VerticalAlignment="Center">
-                                    </MD:PackIcon>
-
-                                    <Label 
-                                            Content="Einstellungen"
-                                            Foreground="White"
-                                            Height="30"
-                                            VerticalAlignment="Bottom"
-                                            FontWeight="Bold">
-                                    </Label>
-                                </StackPanel>
-                            </ListViewItem>
-
                         </ListView>
                     </Grid>
                 </Border>

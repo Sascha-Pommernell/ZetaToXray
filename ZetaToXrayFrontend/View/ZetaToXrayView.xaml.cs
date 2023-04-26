@@ -1,20 +1,10 @@
 ﻿using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using ZetaToXrayFrontend.UCs;
 
 namespace ZetaToXrayFrontend.View
@@ -24,10 +14,8 @@ namespace ZetaToXrayFrontend.View
     /// </summary>
     public partial class ZetaToXrayView : MetroWindow
     {
-        private ImportZetaTestCase? _ImportZetaTestCase;
         private ConvertToXrayTestCase? _ConvertToXrayTestCase;
         private ConvertToXrayPreNotification? _ConvertToXrayPreNotification;
-        private Settings? _Settings;
 
         public ZetaToXrayView()
         {
@@ -41,10 +29,8 @@ namespace ZetaToXrayFrontend.View
 
         private void Init()
         {
-            _ImportZetaTestCase = new ImportZetaTestCase();
             _ConvertToXrayTestCase = new ConvertToXrayTestCase();
             _ConvertToXrayPreNotification = new ConvertToXrayPreNotification();
-            _Settings = new Settings();;
         }
 
         private void BtnWindowsMinimizer_Click(object sender, RoutedEventArgs e)
@@ -154,19 +140,11 @@ namespace ZetaToXrayFrontend.View
             {
                 case 0:
                     UCsPlaceHoldergrid.Children.Clear();
-                    UCsPlaceHoldergrid.Children.Add(_ImportZetaTestCase);
+                    UCsPlaceHoldergrid.Children.Add(_ConvertToXrayTestCase);
                     break;
                 case 1:
                     UCsPlaceHoldergrid.Children.Clear();
-                    UCsPlaceHoldergrid.Children.Add(_ConvertToXrayTestCase);
-                    break;
-                case 2:
-                    UCsPlaceHoldergrid.Children.Clear();
                     UCsPlaceHoldergrid.Children.Add(_ConvertToXrayPreNotification);
-                    break;
-                case 3:
-                    UCsPlaceHoldergrid.Children.Clear();
-                    UCsPlaceHoldergrid.Children.Add(_Settings);
                     break;
                 default:
                     break;

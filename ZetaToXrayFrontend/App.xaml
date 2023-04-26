@@ -128,18 +128,6 @@
                         <Setter Property="Foreground" Value="White"/>
                         <Setter Property="FontSize" Value="12"/>
                     </Trigger>
-
-                    <!--<MultiTrigger>
-                        <MultiTrigger.Conditions>
-                            <Condition Property="DataGridCell.IsSelectet" Value="True"/>
-                            <Condition Property="DataGridCell.IsMouseOver" Value="True"/>
-                        </MultiTrigger.Conditions>
-                        <MultiTrigger.Setters>
-                            <Setter Property="Background" Value="{StaticResource AppBrushColorCyan}"/>
-                            <Setter Property="Foreground" Value="White"/>
-                            <Setter Property="FontSize" Value="12"/>
-                        </MultiTrigger.Setters>
-                    </MultiTrigger>-->                    
                 </Style.Triggers>
             </Style>
             <Style TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource MaterialDesignDataGridRow}">

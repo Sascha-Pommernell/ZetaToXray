@@ -7,8 +7,8 @@ namespace ZetaToXrayBackend.Service.Exceltransfer
     {
         private static int lineStart = 2;
         private static int columnsStart = 1;
-        private static int lineEnd = 10000;
-        private static int columnsEnd = 30;
+        private static int lineEnd = 1002;
+        private static int columnsEnd = 23;
         private string pathExcelRead;
         private object[,] input = new object[lineEnd - lineStart, columnsEnd - columnsStart];
         private string[,] excelArry = new string[lineEnd - lineStart, columnsEnd - columnsStart];
@@ -40,9 +40,9 @@ namespace ZetaToXrayBackend.Service.Exceltransfer
 
             input = range.Value2;
 
-            for (int cellLine = 2; cellLine <= lineEnd - lineStart; cellLine++)
+            for (int cellLine = 1; cellLine < lineEnd - lineStart; cellLine++)
             {
-                for (int cellColumn = 1; cellColumn <= columnsEnd - columnsStart; cellColumn++)
+                for (int cellColumn = 1; cellColumn < columnsEnd - columnsStart; cellColumn++)
                 {
                     if (input[cellLine, cellColumn] == null)
                     {
@@ -50,7 +50,7 @@ namespace ZetaToXrayBackend.Service.Exceltransfer
                     }
                     else
                     {
-                        excelArry[cellLine - 1, cellColumn - 1] = input[cellLine, cellColumn].ToString();
+                        excelArry[cellLine , cellColumn ] = input[cellLine, cellColumn].ToString();
                     }
                 }
             }

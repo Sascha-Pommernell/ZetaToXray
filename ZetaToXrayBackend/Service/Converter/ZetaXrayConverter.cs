@@ -9,8 +9,6 @@ namespace ZetaToXrayBackend.Service.Converter
         private bool testCaseInput = false;
         private string? tmpTeststep;
         private char[]? teststep;
-        private TestStepXray testStepXray = new TestStepXray();
-        private TestCaseXray testCaseXray = new TestCaseXray();
         private PreConditionXray preConditionXray = new PreConditionXray();
         private List<TestStepXray> testStepXrayList = new List<TestStepXray>();
         private List<TestCaseXray> testCaseXrayList = new List<TestCaseXray>();
@@ -25,29 +23,24 @@ namespace ZetaToXrayBackend.Service.Converter
                     if (testCaseZeta.Testschritte != null)
                     {
                         teststep = testCaseZeta.Testschritte.ToCharArray();
-                        for (int index = 0; index <= teststep.Length; index++)
+                        for (int index = 0; index < teststep.Length; index++)
                         {
                             if (teststep[index] != '.' && index < teststep.Length)
                             {
                                 tmpTeststep = tmpTeststep + teststep[index];
                             }
-                            else if (teststep[index] == '.' && index < teststep.Length)
+                            else if (teststep[index] == '.' && index +1 < teststep.Length)
                             {
+                                TestStepXray testStepXray = new TestStepXray();
                                 tmpTeststep = tmpTeststep + ".";
                                 testStepXray.TCID = testCaseZeta.TestFallID;
                                 testStepXray.TestStepAction = tmpTeststep;
                                 testStepXrayList.Add(testStepXray);
                                 tmpTeststep = null;
                             }
-                            else if (teststep[index] != '.' && index == teststep.Length)
+                            else if (teststep[index] == '.' && index < teststep.Length)
                             {
-                                tmpTeststep = tmpTeststep + teststep[index];
-                                testStepXray.TCID = testCaseZeta.TestFallID;
-                                testStepXray.TestStepAction = tmpTeststep;
-                                testStepXrayList.Add(testStepXray);
-                            }
-                            else if (teststep[index] == '.' && index == teststep.Length)
-                            {
+                                TestStepXray testStepXray = new TestStepXray();
                                 tmpTeststep = tmpTeststep + ".";
                                 testStepXray.TCID = testCaseZeta.TestFallID;
                                 testStepXray.TestStepAction = tmpTeststep;
@@ -71,55 +64,77 @@ namespace ZetaToXrayBackend.Service.Converter
         {
             if (testCaseZetasList != null && testStepXrayList != null)
             {
-                foreach (TestCaseZeta testCaseZeta in testCaseZetasList)
-                {
-                    testCaseXray.TCID = testCaseZeta.TestFallID;
-                    testCaseXray.TestSummary = testCaseZeta.TestFallTitel;
-
-                    if (testCaseZeta.Testpriorität == "3 - Niedrig  =  Kann")
-                    {
-                        testCaseXray.TestPriority = "Medium";
-                    }
-                    else if (testCaseZeta.Testpriorität == "2 - Mittel      =  Soll")
-                    {
-                        testCaseXray.TestPriority = "High";
-                    }
-                    else if (testCaseZeta.Testpriorität == "1 - Hoch = Muss")
-                    {
-                        testCaseXray.TestPriority = "Highest";
-                    }
-                    else if (testCaseZeta.Testpriorität == "")
-                    {
-                        testCaseXray.TestPriority = "Lowest";
-                    }
-
-                    testCaseXray.Discription = testCaseZeta.TestFallBeschreibung;
-                    testCaseXray.Components = testCaseZeta.Hierachie;
-                    testCaseXray.MaxExecutions = "1";
+                foreach (TestCaseZeta testCaseZeta in testCaseZetasList)               {
 
                     foreach (TestStepXray testStepXray in testStepXrayList)
                     {
+                        TestCaseXray testCaseXray = new TestCaseXray();
+
                         if (testStepXray.TCID == testCaseZeta.TestFallID && testCaseInput == false)
                         {
-                            if (testStepXray.TestStepResult != null)
+                            if (testStepXray.TestStepResult != "")
                             {
+                                testCaseXray.TCID = testCaseZeta.TestFallID;
+                                testCaseXray.TestSummary = testCaseZeta.TestFallTitel;
+
+                                if (testCaseZeta.Testpriorität == "3 - Niedrig  =  Kann")
+                                {
+                                    testCaseXray.TestPriority = "Medium";
+                                }
+                                else if (testCaseZeta.Testpriorität == "2 - Mittel      =  Soll")
+                                {
+                                    testCaseXray.TestPriority = "High";
+                                }
+                                else if (testCaseZeta.Testpriorität == "1 - Hoch = Muss")
+                                {
+                                    testCaseXray.TestPriority = "Highest";
+                                }
+                                else if (testCaseZeta.Testpriorität == "")
+                                {
+                                    testCaseXray.TestPriority = "Lowest";
+                                }
+
+                                testCaseXray.Discription = testCaseZeta.TestFallBeschreibung;
+                                testCaseXray.Components = testCaseZeta.Hierachie;
+                                testCaseXray.MaxExecutions = "1";
                                 testCaseXray.Action = testStepXray.TestStepAction;
                                 testCaseXray.Data = "";
                                 testCaseXray.Result = testStepXray.TestStepResult;
                             }
                             else
                             {
+                                testCaseXray.TCID = testCaseZeta.TestFallID;
+                                testCaseXray.TestSummary = testCaseZeta.TestFallTitel;
+
+                                if (testCaseZeta.Testpriorität == "3 - Niedrig  =  Kann")
+                                {
+                                    testCaseXray.TestPriority = "Medium";
+                                }
+                                else if (testCaseZeta.Testpriorität == "2 - Mittel      =  Soll")
+                                {
+                                    testCaseXray.TestPriority = "High";
+                                }
+                                else if (testCaseZeta.Testpriorität == "1 - Hoch = Muss")
+                                {
+                                    testCaseXray.TestPriority = "Highest";
+                                }
+                                else if (testCaseZeta.Testpriorität == "")
+                                {
+                                    testCaseXray.TestPriority = "Lowest";
+                                }
+
+                                testCaseXray.Discription = testCaseZeta.TestFallBeschreibung;
+                                testCaseXray.Components = testCaseZeta.Hierachie;
+                                testCaseXray.MaxExecutions = "1";
                                 testCaseXray.Action = testStepXray.TestStepAction;
                                 testCaseXray.Data = "";
                                 testCaseXray.Result = "";
                             }
-
                             testCaseXrayList.Add(testCaseXray);
-                            testCaseInput = true;
                         }
-                        else if (testStepXray.TCID == testCaseZeta.TestFallID && testCaseInput == true)
+                        else if(testStepXray.TCID == testCaseZeta.TestFallID && testCaseInput == true)
                         {
-                            if (testStepXray.TestStepResult != null)
+                            if (testStepXray.TestStepResult != "")
                             {
                                 testCaseXray.TCID = testCaseZeta.TestFallID;
                                 testCaseXray.TestSummary = "";
@@ -151,6 +166,7 @@ namespace ZetaToXrayBackend.Service.Converter
                             testCaseInput = false;
                             break;
                         }
+                        testCaseInput = true;
                     }
                 }
             }

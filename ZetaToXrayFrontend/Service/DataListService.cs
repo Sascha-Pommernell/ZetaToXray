@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using ZetaToXrayBackend.Model.Xray;
 using ZetaToXrayBackend.Model.Zeta;
 using ZetaToXrayBackend.Service;
 using ZetaToXrayBackend.Service.Converter;
 using ZetaToXrayBackend.Service.Exceltransfer;
-using ZetaToXrayBackend.Service.Settingtransfer;
 
 namespace ZetaToXrayFrontend.Service
 {
@@ -16,10 +14,8 @@ namespace ZetaToXrayFrontend.Service
         private List<TestCaseXray> testCaseXrays = new List<TestCaseXray>();
         private List<PreConditionXray> preConditionXrays = new List<PreConditionXray>();
         
-        public List<TestCaseZeta> ZetaTestCaseListService()
+        public List<TestCaseZeta> ZetaTestCaseListService(string excelImportPath)
         {
-            SettingReader settingReader = new SettingReader();
-            string excelImportPath = settingReader.ReadSettingExcelImport();
             ExcelReader excelReader = new ExcelReader(excelImportPath);
             ZetaTestCaseList zetaTestCaseList = new ZetaTestCaseList();
             testCaseZetaList = zetaTestCaseList.CreateTestCaseZetaList(excelReader.CreateExcelArry());
@@ -27,7 +23,7 @@ namespace ZetaToXrayFrontend.Service
             return testCaseZetaList;
         }
 
-        public List<TestCaseXray> XrayTestCaseListService()
+        public List<TestCaseXray> XrayTestCaseListService(List<TestCaseZeta> testCaseZetaList)
         {
             ZetaXrayConverter converter = new ZetaXrayConverter();
             testStepXrays = converter.CreateTestStepXrayList(testCaseZetaList);
@@ -36,7 +32,7 @@ namespace ZetaToXrayFrontend.Service
             return testCaseXrays;
         }
 
-        public List<PreConditionXray> PreConditionXrayService()
+        public List<PreConditionXray> PreConditionXrayService(List<TestCaseZeta> testCaseZetaList)
         {
             ZetaXrayConverter converter = new ZetaXrayConverter();
             preConditionXrays = converter.CreatePreConditionXrayList(testCaseZetaList);

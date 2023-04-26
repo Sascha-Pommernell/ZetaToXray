@@ -6,8 +6,14 @@
              xmlns:local="clr-namespace:ZetaToXrayFrontend.UCs"
              xmlns:MW="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:MD="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:vm="clr-namespace:ZetaToXrayFrontend.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="650" d:DesignWidth="1200">
+
+    <UserControl.DataContext>
+        <vm:ConvertToXrayTestCaseViewModel/>
+    </UserControl.DataContext>
+    
     <Grid Background="{StaticResource AppBrushColorBlue}" Margin="4 2">
         <MD:TransitioningContent OpeningEffect="{MD:TransitionEffect Kind=ExpandIn,Duration=0:0:0:001}">
             <Grid>
@@ -26,17 +32,25 @@
                 </Grid>
 
                 <Grid Grid.Row="1" SnapsToDevicePixels="True" UseLayoutRounding="True">
-                    <DataGrid x:Name="DataGridXrayTestCase" SnapsToDevicePixels="True" UseLayoutRounding="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                    <DataGrid x:Name="DataGridXrayTestCase" Foreground="White" CellStyle="{StaticResource MaterialDesignDataGridCell}" RowStyle="{StaticResource MaterialDesignDataGridRow}" ItemsSource="{Binding TestCaseXrays}" SnapsToDevicePixels="True" UseLayoutRounding="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" CanUserAddRows="False" AutoGenerateColumns="False">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Test"></DataGridTextColumn>
+                            <DataGridTextColumn Header="TCID" Binding="{Binding TCID}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Test Summary" Binding="{Binding TestSummary}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Test Priority" Binding="{Binding TestPriority}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Discription" Binding="{Binding Discription}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Components" Binding="{Binding Components}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Action" Binding="{Binding Action}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Data" Binding="{Binding Data}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Result" Binding="{Binding Result}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Max Executions" Binding="{Binding MaxExecutions}"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
 
                 <Grid Grid.Row="2">
-                    <Button x:Name="ConvertXrayTestCase" Content="Konvertieren" VerticalAlignment="Center" HorizontalAlignment="Left" Width="150" Height="30" Margin="0,0,1040,0"></Button>
+                    <Button x:Name="ConvertXrayTestCase" Content="Konvertieren" VerticalAlignment="Center" HorizontalAlignment="Left" Width="150" Height="30" Margin="0,0,1040,0" Command="{Binding ListConverter}" Cursor="Hand"></Button>
                     <Button x:Name="ExportXrayTestCase" Content="Exportieren" VerticalAlignment="Center"  Width="150" Height="30" Margin="0,0,730,0"/>
-                    <MW:MetroProgressBar x:Name="progressBar" VerticalAlignment="Center" HorizontalAlignment="Right" Visibility="Visible" Background="{StaticResource AppBrushColorBlue}" Foreground="{StaticResource AppBrushColorCyanHover}" Margin="990,0,0,0" IsIndeterminate="True" Width="200" Height="20"></MW:MetroProgressBar>
+                    <MW:MetroProgressBar x:Name="progressBar" VerticalAlignment="Center" HorizontalAlignment="Right" Visibility="Visible" Background="{StaticResource AppBrushColorBlue}" Foreground="{StaticResource AppBrushColorCyanHover}" Margin="990,0,0,0" Width="200" Height="20" IsIndeterminate="{Binding IsConvert}"/>
                 </Grid>
             </Grid>
         </MD:TransitioningContent>
