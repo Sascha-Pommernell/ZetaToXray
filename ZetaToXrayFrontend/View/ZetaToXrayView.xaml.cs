@@ -15,7 +15,7 @@ namespace ZetaToXrayFrontend.View
     public partial class ZetaToXrayView : MetroWindow
     {
         private ConvertToXrayTestCase? _ConvertToXrayTestCase;
-        private ConvertToXrayPreNotification? _ConvertToXrayPreNotification;
+        private ConvertToXrayPreCondition? _ConvertToXrayPreCondition;
 
         public ZetaToXrayView()
         {
@@ -30,7 +30,7 @@ namespace ZetaToXrayFrontend.View
         private void Init()
         {
             _ConvertToXrayTestCase = new ConvertToXrayTestCase();
-            _ConvertToXrayPreNotification = new ConvertToXrayPreNotification();
+            _ConvertToXrayPreCondition = new ConvertToXrayPreCondition();
         }
 
         private void BtnWindowsMinimizer_Click(object sender, RoutedEventArgs e)
@@ -144,7 +144,7 @@ namespace ZetaToXrayFrontend.View
                     break;
                 case 1:
                     UCsPlaceHoldergrid.Children.Clear();
-                    UCsPlaceHoldergrid.Children.Add(_ConvertToXrayPreNotification);
+                    UCsPlaceHoldergrid.Children.Add(_ConvertToXrayPreCondition);
                     break;
                 default:
                     break;

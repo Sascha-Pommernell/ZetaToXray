@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="ZetaToXrayFrontend.UCs.ConvertToXrayPreCondition"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ZetaToXrayFrontend.UCs"
+             xmlns:MW="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:MD="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:vm="clr-namespace:ZetaToXrayFrontend.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="650" d:DesignWidth="1200">
+
+    <UserControl.DataContext>
+        <vm:ConvertToXrayPreConditionViewModel/>
+    </UserControl.DataContext>
+    
+    <Grid Background="{StaticResource AppBrushColorBlue}" Margin="4 2">
+        <MD:TransitioningContent OpeningEffect="{MD:TransitionEffect Kind=ExpandIn,Duration=0:0:0:001}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" SnapsToDevicePixels="True" UseLayoutRounding="True">
+                    <TextBlock Text="Konvertierung der Vorbedingungen (Xray)" Foreground="White" FontFamily="Segoe Print" HorizontalAlignment="Center" VerticalAlignment="Top" Height="40" Width="514" FontSize="24" FontWeight="ExtraBold"/>
+                </Grid>
+
+                <Grid Grid.Row="1" SnapsToDevicePixels="True" UseLayoutRounding="True">
+                    <DataGrid x:Name="DataGridXrayPreCondition" Foreground="White" CellStyle="{StaticResource MaterialDesignDataGridCell}" RowStyle="{StaticResource MaterialDesignDataGridRow}" ItemsSource="{Binding PreConditionXrays}" SnapsToDevicePixels="True" UseLayoutRounding="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" CanUserAddRows="False" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Assigen" Binding="{Binding Assigen}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Condition" Binding="{Binding Condition}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Discription" Binding="{Binding Discription}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Issue Type" Binding="{Binding IssueType}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Type" Binding="{Binding Type}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Reporter" Binding="{Binding Reporter}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Summary" Binding="{Binding Summary}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Test Assoziated Pre-Condition" Binding="{Binding TestsAssociatedPreCondition}"></DataGridTextColumn>                            
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <MW:MetroProgressBar x:Name="progressBarPreNotification" Visibility="Hidden" Foreground="{StaticResource AppBrushColorCyanHover}" Width="80" Height="80"></MW:MetroProgressBar>
+                </Grid>
+
+                <Grid Grid.Row="2">
+                    <Button x:Name="ConvertXrayPreCondition" Content="Konvertieren" Width="150" Height="30" Margin="0,0,1040,0" Command="{Binding ListConverter}"/>
+                    <Button x:Name="ExportXrayPreCondition" Content="Exportieren" Width="150" Height="30" Margin="0,0,730,0" Command="{Binding SaveList}"/>
+                </Grid>
+            </Grid>
+        </MD:TransitioningContent>
+    </Grid>
+</UserControl>

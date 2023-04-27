@@ -7,26 +7,27 @@ using ZetaToXrayBackend.Model.Xray;
 using ZetaToXrayBackend.Model.Zeta;
 using ZetaToXrayFrontend.Service;
 
+
 namespace ZetaToXrayFrontend.ViewModels
 {
-    public class ConvertToXrayTestCaseViewModel : ViewModelBase
+    public class ConvertToXrayPreConditionViewModel : ViewModelBase
     {
         private bool isConvert;
         private bool convertIsDone;
         public List<TestCaseZeta> ListZetaTestCase = new List<TestCaseZeta>();
-        public TestCaseXray TestCaseXray { get; set; } = null!;
+        public PreConditionXray PreConditionXray { get; set; } = null!;
         public DelegateCommand ListConverter { get; set; }
         public DelegateCommand SaveList { get; set; }
 
-        public ObservableCollection<TestCaseXray> TestCaseXrays { get; set; }
-        public List<TestCaseXray> ListTestCaseXray = new List<TestCaseXray>();
+        public ObservableCollection<PreConditionXray> PreConditionXrays { get; set; }
+        public List<PreConditionXray> ListPreConditionXray = new List<PreConditionXray>();
 
         public bool IsConvert
         {
             get => isConvert;
             set
             {
-                if(isConvert != value)
+                if (isConvert != value)
                 {
                     isConvert = value;
                     this.RaisePropertyChange();
@@ -34,11 +35,11 @@ namespace ZetaToXrayFrontend.ViewModels
             }
         }
 
-        public ConvertToXrayTestCaseViewModel()
+        public ConvertToXrayPreConditionViewModel()
         {
             this.ListConverter = new DelegateCommand((o) => ConvertList());
             this.SaveList = new DelegateCommand((o) => ExportList());
-            this.TestCaseXrays = new ObservableCollection<TestCaseXray>();
+            this.PreConditionXrays = new ObservableCollection<PreConditionXray>();
         }
 
         private void ConvertList()
@@ -63,17 +64,17 @@ namespace ZetaToXrayFrontend.ViewModels
                     this.IsConvert = true;
                     var serviceTestCaseZeta = new DataListService();
                     ListZetaTestCase = serviceTestCaseZeta.ZetaTestCaseListService(excelImportPath);
-                    var serviceTestCaseXray = new DataListService();
-                    ListTestCaseXray = serviceTestCaseXray.XrayTestCaseListService(ListZetaTestCase);
+                    var servicePreConditionXray = new DataListService();
+                    ListPreConditionXray = servicePreConditionXray.PreConditionXrayService(ListZetaTestCase);
 
-                    foreach (var testCaseXray in ListTestCaseXray)
+                    foreach (var preConditionXray in ListPreConditionXray)
                     {
-                        this.TestCaseXrays.Add(testCaseXray);
+                        this.PreConditionXrays.Add(preConditionXray);
                     }
 
                     this.IsConvert = false;
                     this.convertIsDone = true;
-                    
+
                 }
                 else
                 {
@@ -85,7 +86,7 @@ namespace ZetaToXrayFrontend.ViewModels
                 MessageBox.Show("Der Dialog zum öffenen der Datei konnte nicht geöffnet werden!");
             }
 
-            if(convertIsDone == true)
+            if (convertIsDone == true)
             {
                 MessageBox.Show("Die Konvertierung ist abgeschlossen! \nDer Export kann jetzt erfolgen!");
             }
@@ -107,7 +108,7 @@ namespace ZetaToXrayFrontend.ViewModels
                 if (listExportPath != "")
                 {
                     ExportService exportService = new ExportService();
-                    exportService.ExportXrayTestCase(ListTestCaseXray, listExportPath);
+                    exportService.ExportXrayPreCondition(ListPreConditionXray, listExportPath);
 
                     MessageBox.Show("Der Export wurde erfolgreich beendet!");
                 }

@@ -12,9 +12,14 @@ namespace ZetaToXrayFrontend.Service
     {
        private CsvWriter writer = new CsvWriter();
 
-        public void ExportToExcelService (List<TestCaseXray> testCaseXray, string exportPath)
+        public void ExportXrayTestCase (List<TestCaseXray> testCaseXray, string exportPath)
         {
-            writer.WriteExcelDatei(testCaseXray, exportPath);
+            writer.WriteXrayTestCaseCSV(testCaseXray, exportPath);
+        }
+
+        public void ExportXrayPreCondition (List<PreConditionXray> preConditionXray, string exportPath)
+        {
+            writer.WriteXrayPreConditionCSV(preConditionXray, exportPath);
         }
     }
 }

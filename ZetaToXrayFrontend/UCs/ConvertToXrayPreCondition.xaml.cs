@@ -6,9 +6,9 @@ namespace ZetaToXrayFrontend.UCs
     /// <summary>
     /// Interaktionslogik für ConvertToXrayPreNotification.xaml
     /// </summary>
-    public partial class ConvertToXrayPreNotification : UserControl
+    public partial class ConvertToXrayPreCondition : UserControl
     {
-        public ConvertToXrayPreNotification()
+        public ConvertToXrayPreCondition()
         {
             InitializeComponent();
         }
