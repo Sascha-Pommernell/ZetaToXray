@@ -5,7 +5,17 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <PackageIcon>cube.png</PackageIcon>
+    <ApplicationIcon>Picture\ico-folder-gear.ico</ApplicationIcon>
+    <AssemblyName>ZetaToXray</AssemblyName>
+    <Title>ZetaToXray</Title>
+    <Authors>Sascha Pommernell</Authors>
+    <Company>Payone GmbH</Company>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Picture\ico-folder-gear.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="MahApps.Metro" Version="2.4.9" />
@@ -16,6 +26,25 @@
   <ItemGroup>
     <ProjectReference Include="..\MVVM_Base\MVVM_Base.csproj" />
     <ProjectReference Include="..\ZetaToXrayBackend\ZetaToXrayBackend.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Picture\cube.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
 
 </Project>

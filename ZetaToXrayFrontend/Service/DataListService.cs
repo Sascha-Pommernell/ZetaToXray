@@ -26,7 +26,6 @@ namespace ZetaToXrayFrontend.Service
         public List<TestCaseXray> XrayTestCaseListService(List<TestCaseZeta> testCaseZetaList)
         {
             ZetaXrayConverter converter = new ZetaXrayConverter();
-            //testStepXrays = converter.CreateTestStepXrayList(testCaseZetaList);
             testCaseXrays = converter.CreateTestCaseXrayList(testCaseZetaList, testStepXrays);
 
             return testCaseXrays;

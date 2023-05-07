@@ -1,6 +1,7 @@
 ﻿using Microsoft.Office.Interop.Excel;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using ZetaToXrayBackend.Model.Xray;
 using Excel = Microsoft.Office.Interop.Excel;
 
@@ -11,7 +12,7 @@ namespace ZetaToXrayBackend.Service.FileTransfer
     {
         public void WriteXrayTestCaseCSV(List<TestCaseXray> outputData ,string pathExportTestCase)
         {
-            using (StreamWriter writer = new StreamWriter(pathExportTestCase))
+            using (StreamWriter writer = new StreamWriter(pathExportTestCase, false, Encoding.UTF8, 512))
             {
                 writer.WriteLine("TCID;Test Summary;Test Priority;Discription;Components;Action;Data;Result;Max Executions");
 
@@ -32,13 +33,13 @@ namespace ZetaToXrayBackend.Service.FileTransfer
 
         public void WriteXrayPreConditionCSV (List<PreConditionXray> outputData ,string pathExportPreCondition)
         {
-            using (StreamWriter writer= new StreamWriter(pathExportPreCondition))
+            using (StreamWriter writer= new StreamWriter(pathExportPreCondition, false, Encoding.UTF8,512))
             {
                 writer.WriteLine("Assigen;Condition;Description;IssueType;Reporter;Summary;Test Associated Pre-Condition");
 
                 foreach (PreConditionXray preConditionXray in outputData)
                 {
-                    writer.WriteLine($"{preConditionXray.Assigen};" +
+                   writer.WriteLine($"{preConditionXray.Assigen};" +
                         $"{preConditionXray.Condition};" +
                         $"{preConditionXray.Description};" +
                         $"{preConditionXray.IssueType};" +

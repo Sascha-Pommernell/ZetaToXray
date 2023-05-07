@@ -8,7 +8,7 @@ namespace ZetaToXrayBackend.Service.Converter
     {
         private bool testCaseInput = true;
         private string? tmpTeststep;
-        private char[]? teststep;
+        private char[] teststep = null!;
         private int index = 0;
         private List<TestStepXray> testStepXrayList = new List<TestStepXray>();
         private List<TestCaseXray> testCaseXrayList = new List<TestCaseXray>();
@@ -66,17 +66,17 @@ namespace ZetaToXrayBackend.Service.Converter
                     if (testStepXray.TestStepResult != "")
                     {
                         testCaseXray.TCID = testCaseZeta.TestFallID;
-                        testCaseXray.TestSummary = testCaseZeta.TestFallTitel;
+                        testCaseXray.TestSummary = testCaseZeta.TestFallTitel.Replace("\r\n", " ");
 
-                        if (testCaseZeta.Testpriorität == "3 - Niedrig  =  Kann")
+                        if (testCaseZeta.Testpriorität.Contains('3') == true)
                         {
                             testCaseXray.TestPriority = "Medium";
                         }
-                        else if (testCaseZeta.Testpriorität == "2 - Mittel      =  Soll")
+                        else if (testCaseZeta.Testpriorität.Contains('2') == true)
                         {
                             testCaseXray.TestPriority = "High";
                         }
-                        else if (testCaseZeta.Testpriorität == "1 - Hoch = Muss")
+                        else if (testCaseZeta.Testpriorität.Contains('1') == true)
                         {
                             testCaseXray.TestPriority = "Highest";
                         }
@@ -85,27 +85,27 @@ namespace ZetaToXrayBackend.Service.Converter
                             testCaseXray.TestPriority = "Lowest";
                         }
 
-                        testCaseXray.Discription = testCaseZeta.TestFallBeschreibung;
-                        testCaseXray.Components = testCaseZeta.Hierachie;
+                        testCaseXray.Discription = testCaseZeta.TestFallBeschreibung.Replace("\r\n", " ");
+                        testCaseXray.Components = testCaseZeta.Hierachie.Replace("\r\n", " ");
                         testCaseXray.MaxExecutions = "1";
-                        testCaseXray.Action = testStepXray.TestStepAction;
+                        testCaseXray.Action = testStepXray.TestStepAction.Replace("\r\n", " ");
                         testCaseXray.Data = "";
-                        testCaseXray.Result = testStepXray.TestStepResult;
+                        testCaseXray.Result = testStepXray.TestStepResult.Replace("\r\n", " ");
                     }
                     else
                     {
                         testCaseXray.TCID = testCaseZeta.TestFallID;
-                        testCaseXray.TestSummary = testCaseZeta.TestFallTitel;
+                        testCaseXray.TestSummary = testCaseZeta.TestFallTitel.Replace("\r\n", " ");
 
-                        if (testCaseZeta.Testpriorität == "3 - Niedrig  =  Kann")
+                        if (testCaseZeta.Testpriorität.Contains('3') == true)
                         {
                             testCaseXray.TestPriority = "Medium";
                         }
-                        else if (testCaseZeta.Testpriorität == "2 - Mittel      =  Soll")
+                        else if (testCaseZeta.Testpriorität.Contains('2') == true)
                         {
                             testCaseXray.TestPriority = "High";
                         }
-                        else if (testCaseZeta.Testpriorität == "1 - Hoch = Muss")
+                        else if (testCaseZeta.Testpriorität.Contains('1') == true)
                         {
                             testCaseXray.TestPriority = "Highest";
                         }
@@ -114,10 +114,10 @@ namespace ZetaToXrayBackend.Service.Converter
                             testCaseXray.TestPriority = "Lowest";
                         }
 
-                        testCaseXray.Discription = testCaseZeta.TestFallBeschreibung;
-                        testCaseXray.Components = testCaseZeta.Hierachie;
+                        testCaseXray.Discription = testCaseZeta.TestFallBeschreibung.Replace("\r\n", " ");
+                        testCaseXray.Components = testCaseZeta.Hierachie.Replace("\r\n", " ");
                         testCaseXray.MaxExecutions = "1";
-                        testCaseXray.Action = testStepXray.TestStepAction;
+                        testCaseXray.Action = testStepXray.TestStepAction.Replace("\r\n", " ");
                         testCaseXray.Data = "";
                         testCaseXray.Result = "";
                     }
@@ -134,9 +134,9 @@ namespace ZetaToXrayBackend.Service.Converter
                         testCaseXray.Discription = "";
                         testCaseXray.Components = "";
                         testCaseXray.MaxExecutions = "";
-                        testCaseXray.Action = testStepXray.TestStepAction;
+                        testCaseXray.Action = testStepXray.TestStepAction.Replace("\r\n", " ");
                         testCaseXray.Data = "";
-                        testCaseXray.Result = testStepXray.TestStepResult;
+                        testCaseXray.Result = testStepXray.TestStepResult.Replace("\r\n", " ");
                     }
                     else
                     {
@@ -146,7 +146,7 @@ namespace ZetaToXrayBackend.Service.Converter
                         testCaseXray.Discription = "";
                         testCaseXray.Components = "";
                         testCaseXray.MaxExecutions = "";
-                        testCaseXray.Action = testStepXray.TestStepAction;
+                        testCaseXray.Action = testStepXray.TestStepAction.Replace("\r\n", " "); 
                         testCaseXray.Data = "";
                         testCaseXray.Result = "";
                     }
@@ -205,5 +205,7 @@ namespace ZetaToXrayBackend.Service.Converter
             }
             return preConditionXrayList;
         }
+
+
     }
 }
