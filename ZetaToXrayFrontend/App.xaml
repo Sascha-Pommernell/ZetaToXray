@@ -151,7 +151,7 @@
                 <Setter Property="Background" Value="Transparent"/>
                 <Setter Property="VerticalAlignment" Value="Top"/>
                 <Setter Property="AutoGenerateColumns" Value="False"/>
-                <Setter Property="HeadersVisibility" Value="All"/>
+                <Setter Property="HeadersVisibility" Value="None"/>
                 <Setter Property="IsReadOnly" Value="True"/>
                 <Setter Property="CanUserAddRows" Value="False"/>
             </Style>
