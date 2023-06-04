@@ -186,15 +186,15 @@ namespace ZetaToXrayBackend.Service.Converter
 
                 if(testCase.TestFallID != "")
                 {
-                    preConditionXray.Summary = testCase.TestFallTitel;
+                    preConditionXray.Summary = testCase.TestFallTitel.Replace("\r\n", " ");
                     preConditionXray.Assigen = "admin";
                     preConditionXray.Reporter = "admin";
                     //https://docs.getxray.app/display/XRAY30/Issue+Type+Mapping
                     preConditionXray.IssueType = "10";
                     preConditionXray.Type = "Manual";
-                    preConditionXray.Condition = testCase.Vorbedingung;
-                    preConditionXray.Description = testCase.TestFallBeschreibung;
-                    preConditionXray.TestsAssociatedPreCondition = testCase.TestFallID;
+                    preConditionXray.Condition = testCase.Vorbedingung.Replace("\r\n", " ");
+                    preConditionXray.Description = testCase.TestFallBeschreibung.Replace("\r\n", " ");
+                    preConditionXray.TestsAssociatedPreCondition = testCase.TestFallID.Replace("\r\n", " ");
 
                     preConditionXrayList.Add(preConditionXray);
                 }
